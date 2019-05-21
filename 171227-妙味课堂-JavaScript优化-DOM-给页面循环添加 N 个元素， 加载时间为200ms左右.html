@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>给页面循环添加 N 个元素， 加载时间为200ms左右 </title>
+	<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+<!-- 向页面追加500个div元素 -->
+ <script type="text/javascript">
+ window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	console.time('hello');
+	for(var i = 0; i < 500; i ++){
+		oDiv.innerHTML += "<div class='bg"+i+"'></div>";
+	}
+//	添加加载 i 个元素所花费的时间
+	console.timeEnd('hello');
+ }
+ </script>
+ <body>
+<div class="" id="div1"></div>
+ </body>
+</html>

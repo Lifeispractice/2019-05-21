@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+ </head>
+ <body>
+<style type="text/css">
+/*缔造者优秀地图********************************************************************************************************/
+.sect-design{padding-left:40px;width:840px;margin:50px 0;}
+.sect-design .design-bar{width:840px;height:360px;background:#fff}
+.sect-design li{float:left;position:relative;overflow:hidden}
+.sect-design li img,.sect-design li p{transition:all .5s}
+.sect-design li img{width:100%;height:100%}
+.sect-design li p{position:absolute;bottom:-70px;left:0;padding:5px 0 5px 15px;height:60px;width:100%;font-size:12px;color:#fff;line-height:18px;background:rgba(0,0,0,.7)}
+.sect-design li p b{color:#ff8c48;font-size:16px;line-height:24px}
+.sect-design li:hover p{bottom:0}
+.sect-design li:hover img{transform:scale(1.2)}
+.sect-design .design-1{width:350px;height:360px}
+.sect-design .design-2{width:240px;height:360px}
+.sect-design .design-3{width:250px;height:180px}
+.sect-design .design-4{width:250px;height:180px}
+/*弹窗*****************************************************************************************************************/
+.pop-design {position:fixed;z-index:9999;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,.8);display: none}
+.pop-design .pop-bg {position:absolute;top:50%;left:0;margin-top:-385px;width:100%;height:770px;background:#ff8c49;}
+.pop-design .pop-bg .pop-con {position:relative;width:980px;padding:30px 125px;height:710px;font-size:14px;color:#000;line-height:24px;margin:0 auto;}
+.pop-design .pop-bg .pop-con .btn-close {position:absolute;top:0;right:120px;width:75px;height:75px;background-repeat:no-repeat;background-position:50%;background-color:#ff8c49;font-size: 20px;font-weight: bold;line-height: 75px;}
+.pop-design .pop-bg .pop-con .name {font-size:32px;font-weight:bold;line-height:45px}
+.pop-design .pop-bg .pop-con .run-container {width:970px;height:545px;border:5px solid #2f2f2f;margin-top:10px;position:relative;}
+.pop-design .pop-bg .pop-con .design-run {width:970px;height:545px;overflow:hidden}
+.pop-design .pop-bg .pop-con .design-run li{float:left;width:970px;height:545px;position:absolute;top:0;left:0;}
+.pop-design .pop-bg .pop-con .prev,
+.pop-design .pop-bg .pop-con .next {text-indent:-999em;position:absolute;top:217px;left:-75px;width:70px;height:120px;background-repeat:no-repeat;background-color:#2f2f2f;background-position:0 0;}
+.pop-design .pop-bg .pop-con .next {left:975px;background-position:-70px 0;}
+  </style>
+<!-- 缔造者地图 -->
+<div class="col-right sect-design">
+	<div class="design-bar" id="designLoop">
+		数据加载中...
+	</div>
+</div>
+<!-- 弹窗 -->
+<div class="pop-design">
+	<div class="pop-bg">
+		<div class="pop-con">
+			<a href="javascript:" class="btn-close">关闭</a>
+			<p class="name"></p>
+			<p class="desc"></p>
+			<p class="info"></p>
+			<div class="run-container">
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/common-1.2.3-utf8.min.js"></script>
+<script type="text/javascript">
+var CSOL = {
+	baseURL:'https://img1.tiancitycdn.com/csol/homepage/v6/new/',
+	design: [
+			{
+			    'img':'images/design2/1.jpg','name':'末日大逃杀3.0','desc':'网通一区 | 轻音少女秋山情<br>地图类型：生化大逃杀','url':'javascript:showPop(1,1)',
+			    'info':'本图注重多人游戏时的人类僵尸双方阵营的交互。阵营双方人数平衡及机关路线开启时间均做过深度优化。保证每一位玩家的游戏乐趣是我们作图的追求。',
+			    'loop':['images/design2/1-1.jpg','images/design2/1-2.jpg','images/design2/1-3.jpg']
+			},
+			{
+			    'img':'images/design2/2.jpg','name':'【逃杀】海市蜃楼','desc':'电信一区 | 鬼诺乄<br>地图类型：生化大逃杀','url':'javascript:showPop(1,2)',
+			    'info':'灵感来自于海市蜃楼的变幻莫测，结合了现有的大部分缔造者主题创作一个在海市蜃楼逃亡的幻境，作品更趋向于真实的环境刻画而非为了逃杀而逃杀，是一张体验感十足的作品。',
+			    'loop':['images/design2/2-1.jpg','images/design2/2-2.jpg','images/design2/2-3.jpg']
+			},
+			{
+			    'img':'images/design2/3.jpg','name':'冲向黎明（生化大逃杀）','desc':'网通一区 | 狂三x<br>地图类型：生化大逃杀','url':'javascript:showPop(1,3)',
+			    'info':'运用不同风格的缔造者主题包制作的大逃杀地图。机关较多，趣味性较强，经过多次测试，人类僵尸相对平衡，病毒来的快使人类完全放弃了断后的思想。',
+			    'loop':['images/design2/3-1.jpg','images/design2/3-2.jpg','images/design2/3-3.jpg']
+			},
+			{
+			    'img':'images/design2/4.jpg','name':'【生化大逃杀】只此一路','desc':'电信二区 | Loslcy<br>地图类型：生化大逃杀','url':'javascript:showPop(1,4)',
+			    'info':'逃生的路上共做了七段，每段都是不同的风格与阻碍。像第一关绿草坪处的可破坏障碍，第三关的斜坡和刀刃机关等等，部分场景还做了额外修饰，隐藏了一些有趣的东西。跑累了停下来看看也是一件有趣的事情。',
+			    'loop':['images/design2/4-1.jpg','images/design2/4-2.jpg','images/design2/4-3.jpg']
+			}
+		    ]
+}
+$(function(){
+	if(CSOL.design){
+	    $('#designLoop').html('<ul></ul>');
+	    $.each(CSOL.design,function(idx,_data){
+		$('#designLoop ul').append('<li class="design-'+(idx+1)+'">'
+		    +'<a href="'+_data.url+'">'
+		    +'<img src="'+CSOL.baseURL+_data.img+'" alt="'+_data.name+'">'
+		    +'<p><b>'+_data.name+'</b><br>'+_data.desc+'</p>'
+		    +'</a></li>');
+	    });
+	}
+});
+function showPop(flag,index){
+    if(flag==1){
+	var designData = CSOL.design[index-1];
+	if(designData){
+	    $('.pop-design .name').html(designData.name);
+	    $('.pop-design .desc').html(designData.desc);
+	    $('.pop-design .info').html(designData.info);
+	    var $ul = $('<ul></ul>');
+	    $.each(designData.loop,function(idx,_data){
+		$ul.append('<li><img src="'+CSOL.baseURL+_data+'"></li>');
+	    });
+	    $('.run-container').append($('<div class="design-run" id="designRunBox"></div>').append($ul));
+	    $("#designRunBox").runHorse({'mode':'slide','numBtns':false,'auto':false,'speed':500});
+	    $('.pop-design').show();
+	    $('.pop-design .btn-close').unbind('click').bind('click',function(){
+		$('.pop-design').hide();
+		$('.run-container').html('');
+	    });
+	}
+    }
+}
+</script>
+</body>
+</html>

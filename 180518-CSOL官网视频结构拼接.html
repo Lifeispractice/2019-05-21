@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>180518-CSOL官网视频结构拼接</title>
+  <link rel="stylesheet" href="https://img1.tiancitycdn.com/project5/csol2/event/2017/0519mode/css/base.css?v=0809">
+  <script src="https://img1.tiancitycdn.com/project5/csol2/common/jquery-1.7.2.min.js"></script>
+  <script src="https://image.tiancity.com/player/js/videoplay-js.min.js"></script>
+  <style type="text/css">
+  .video_btn{width:1000px;margin:0 auto;}
+  .video_btn li{width:200px;float:left;margin-right:20px;position: relative;}
+  .video_btn li a{display:block;width:100%;height:100%;position: absolute;top:0px;left:0px;}
+  </style>
+ </head>
+ <body>
+ <ul class="video_btn"> </ul>
+ <script type="text/javascript">
+	var Mode = [
+			{
+				 NameHREF:"'https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180509sale/images/video0509.flv'",
+				 NameSRC:"https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180504act/images/1511.jpg"
+			},
+			{
+				 NameHREF:"'https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180509sale/images/video0509.flv'",
+				 NameSRC:"https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180504act/images/1511.jpg"
+			},
+			{
+				 NameHREF:"'https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180509sale/images/video0509.flv'",
+				 NameSRC:"https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180504act/images/1511.jpg"
+			},
+			{
+				 NameHREF:"'https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180509sale/images/video0509.flv'",
+				 NameSRC:"https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180504act/images/1511.jpg"
+			}
+	]
+
+	function renderMapNav(){
+			$.each(Mode,function(i,_mode){
+				var $btn = $('<li><i></i><a class="videoPic" href="javascript:clickPlay('+_mode.NameHREF+',\'720\',\'410\',\'tc\',1)"></a><img src="'+_mode.NameSRC+'" width="210" height="117"></li>'  );
+				$('.video_btn').append($btn);
+				$('.video_btn li').eq(3).nextAll().hide();
+			});
+	}
+	$(function(){
+		renderMapNav(0);
+	})
+</script>
+ </body>
+</html>
+

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>171227-尽量使用局部变量l</title>
+ </head>
+ <script type="text/javascript">
+window.onload = function (){
+	var oUl = document.getElementById('ull');
+	var aLi = oUl.getElementsByTagName('li');
+	for(var i=0;i<5000;i++){
+		oLi = document.createElement('li');
+		oUl.appendChild(oLi);
+	}
+
+//	console.time("hello");
+//	for(var i=0;i<aLi.length;i++){
+//		aLi[i].innerHTML = "li";
+//	}
+//	console.timeEnd("hello");
+
+	console.time("hello");
+	var len = aLi.length;		//获取到的所有集合
+	for(var i=0;i<len;i++){		//频繁的  dom  操作	将 aLi.length 改为局部变量  len  ，循环的时候只是对一个变量进行了循环 他就不会涉及多次的  dom 操作  性能肯定会比之前的要好一些
+		aLi[i].innerHTML = "li";
+	}
+	console.timeEnd("hello");
+
+
+
+//	var oDiv = document.getElementById("div");
+//	var Input = document.getElementById("input");
+//	var oUl = document.getElementById("ul");
+
+	var doc = document;		//局部变量 提升性能
+	var oDiv = doc.getElementById("div");
+	var Input = doc.getElementById("input");
+	var oUl = doc.getElementById("ul");
+}
+ </script>
+ <body>
+<ul id="ull"></ul>
+ </body>
+</html>

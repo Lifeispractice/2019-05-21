@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>180302-卡丁车红包页面效果</title>
+<link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+<style type="text/css">
+.main{width:1000px;height:2000px;margin:0 auto;background:#ccff99;}
+.hb_box{width: 1920px;height: 1850px;position:relative;left: 50%;margin-left: -960px;overflow: hidden;}
+.hb_box .hb{width:130px; height: 150px; background:url(https://img1.tiancitycdn.com/project2/krmgt/2018/02/kr0208act/images/hb.png) no-repeat; position: absolute;}
+.hb_box .hb1{top:0px; left: 100px; top:-500px;-webkit-animation:gogogo 6s infinite linear; animation:gogogo 6s infinite linear; -moz-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -o-animation:gogogo 6s infinite linear;}
+.hb_box .hb2{top:0px; left: 400px; top:-300px;-webkit-animation:gogogo 8s infinite linear; animation:gogogo 8s infinite linear; -moz-animation:gogogo 8s infinite linear; -ms-animation:gogogo 8s infinite linear; -ms-animation:gogogo 8s infinite linear; -o-animation:gogogo 8s infinite linear;}
+.hb_box .hb3{top:0px; left: 600px; top:-1000px;-webkit-animation:gogogo 5s infinite linear; animation:gogogo 5s infinite linear; -moz-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -o-animation:gogogo 5s infinite linear;}
+.hb_box .hb4{top:0px; left: 800px; top:-700px;-webkit-animation:gogogo 6s infinite linear; animation:gogogo 6s infinite linear; -moz-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -o-animation:gogogo 6s infinite linear;}
+.hb_box .hb5{top:0px; left:1200px; top:-200px;-webkit-animation:gogogo 5s infinite linear; animation:gogogo 5s infinite linear; -moz-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -o-animation:gogogo 5s infinite linear;}
+.hb_box .hb6{top:0px; right: 900px; top:-800px;-webkit-animation:gogogo 6s infinite linear; animation:gogogo 6s infinite linear; -moz-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -o-animation:gogogo 6s infinite linear;}
+.hb_box .hb7{top:0px; right: 380px; top:-900px;}
+.hb_box .hb8{top:0px; right: 260px; top:-400px;-webkit-animation:gogogo 5s infinite linear; animation:gogogo 5s infinite linear; -moz-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -o-animation:gogogo 5s infinite linear;}
+.hb_box .hb9{top:0px; right: 260px; top:-180px;-webkit-animation:gogogo 6s infinite linear; animation:gogogo 6s infinite linear; -moz-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -o-animation:gogogo 6s infinite linear;}
+.hb_box .hb10{top:0px; right: 100px; top:-340px;-webkit-animation:gogogo 8s infinite linear; animation:gogogo 8s infinite linear; -moz-animation:gogogo 8s infinite linear; -ms-animation:gogogo 8s infinite linear; -ms-animation:gogogo 8s infinite linear; -o-animation:gogogo 8s infinite linear;}
+.hb_box .hb11{top:0px; left: 300px; top:-400px;-webkit-animation:gogogo 5s infinite linear; animation:gogogo 5s infinite linear; -moz-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -ms-animation:gogogo 5s infinite linear; -o-animation:gogogo 5s infinite linear;}
+.hb_box .hb12{top:0px; left: 400px; top:-180px;-webkit-animation:gogogo 6s infinite linear; animation:gogogo 6s infinite linear; -moz-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -ms-animation:gogogo 6s infinite linear; -o-animation:gogogo 6s infinite linear;}
+.hb_box .hb13{top:0px; left: 600px; top:-340px;-webkit-animation:gogogo 8s infinite linear; animation:gogogo 8s infinite linear; -moz-animation:gogogo 8s infinite linear; -ms-animation:gogogo 8s infinite linear; -ms-animation:gogogo 8s infinite linear; -o-animation:gogogo 8s infinite linear;}
+
+@keyframes gogogo {
+    0%{transform: rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+@-webkit-keyframes gogogo {
+    0%{-webkit-transform: rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+@-moz-keyframes gogogo {
+    0%{-moz-transform: rotate(0deg);}
+    100%{-moz-transform:rotate(360deg);}
+}
+@-ms-keyframes gogogo {
+    0%{-ms-transform: rotate(0deg);}
+    100%{-ms-transform:rotate(360deg);}
+}
+@-o-keyframes gogogo {
+    0%{-o-transform: rotate(0deg);}
+    100%{-o-transform:rotate(360deg);}
+}
+</style>
+ </head>
+ <body>
+<div class="main">
+	<div class="hb_box">
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var hb = '';
+		for(var i = 0; i < 13; i ++){
+			hb+='<div class="hb hb'+(i+1)+'"></div>'
+		}
+		$('.hb_box').append(hb);
+		setInterval(function(){
+			$('.hb_box .hb1').animate({top:900},4000);
+			$('.hb_box .hb2').animate({top:890},3000);
+			$('.hb_box .hb3').animate({top:900},5600);
+			$('.hb_box .hb4').animate({top:1200},4500);
+			$('.hb_box .hb5').animate({top:1000},5500);
+			$('.hb_box .hb6').animate({top:900},4200);
+			$('.hb_box .hb7').animate({top:550},3600);
+			$('.hb_box .hb8').animate({top:900},4900);
+			$('.hb_box .hb9').animate({top:880},3300);
+			$('.hb_box .hb10').animate({top:1000},5700);
+			$('.hb_box .hb11').animate({top:1000},5700);
+			$('.hb_box .hb12').animate({top:1000},5500);
+			$('.hb_box .hb13').animate({top:890},3000);
+		},500)
+	})
+</script>
+ </body>
+</html>

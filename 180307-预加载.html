@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>180307-预加载</title>
+  <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+	<script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+	<script src="https://img1.tiancitycdn.com/lq/event/2018/0124Topic/js/preload.js?v=1"></script>
+<!-- 	<script src="https://img1.tiancitycdn.com/lq/event/2018/0124Topic/js/img.js?v=1"></script> -->
+<style type="text/css">
+/*预加载*/
+.loading{position: absolute; top:0; left:0; width:100%; height:100%; background:#000; z-index: 1000;}
+.load{position: relative; width: 500px; height: 29px; margin: 0 auto; top:50%;}
+.loading p{font-size: 18px; text-align: center; color: #e9f5f5; float: right; line-height: 28px;}
+.loading .img{width: 450px; height: 29px; position: absolute; background: url(https://img1.tiancitycdn.com/lq/event/2018/0124Topic/images/jd.png) no-repeat; float: left;}
+.oWidth{width: 450px; height: 29px; position: absolute; background: url(https://img1.tiancitycdn.com/lq/event/2018/0124Topic/images/jd2.png) no-repeat;}
+@keyframes moves{
+	0%,100%{bottom:10px;}
+	50%{bottom:20px;}
+}
+@-webkit-keyframes moves{
+    0%,100%{bottom:10px;}
+    50%{bottom:20px;}
+}
+@-moz-keyframes moves{
+    0%,100%{bottom:10px;}
+    50%{bottom:20px;}
+}
+@-ms-keyframes moves{
+    0%,100%{bottom:10px;}
+    50%{bottom:20px;}
+}
+@-o-keyframes moves{
+    0%,100%{bottom:10px;}
+    50%{bottom:20px;}
+}
+</style>
+ </head>
+ <body>
+ <video autoplay="" poster="https://img1.tiancitycdn.com/lq/event/2018/0124Topic/images/bg.jpg?v=1" loop="" id="bgvid">
+	<source src="https://img1.tiancitycdn.com/lq/event/2018/0124Topic/images/v1.mp4?v=1" type="video/mp4">
+</video>
+<!-- 预加载部分 -->
+<div class="loading">
+	<div class="load">
+		<div class="img">
+			<div class="oWidth"></div>
+		</div>
+		<p class="progress"></p>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var url = 'https://img1.tiancitycdn.com/lq/event/2018/0124Topic/images/';
+	var imgs = [url+'v1.mp4',url+'bg.jpg',url+'bg1.jpg',url+'bg2.jpg',url+'bg3.jpg',url+'bg4.jpg',url+'bg5.jpg',url+'bg6.jpg',url+'bg7.jpg',url+'bg8.jpg',url+'bg9.jpg',url+'bg10.jpg',url+'jn.png',url+'jq.png',url+'logo.png',url+'nav.png',url+'nav_bg.png',url+'nav1.png',url+'navli.png',url+'navli_on.png',url+'npc.png',url+'pic.png',url+'pic8.png',url+'slogan.png',url+'video.png',url+'wq.png',url+'xt.png',url+'v1.flv',url+'v2.flv'];
+	var index = 0,
+        len = imgs.length,
+        $progress = $('.progress'),
+        $oWidth = $('.oWidth');
+    $.preload(imgs,{
+      each: function(count){
+        $progress.html(Math.round((count+1)/len *100)+'%');
+        $oWidth.width(Math.round((count+1)/len *450)+'px')
+      },
+      all: function(count){
+        setTimeout(function(){
+          $('.loading').fadeOut();
+          //$('.swiper-container').fadeIn();
+        },500);
+      }
+    });
+});
+</script>
+ </body>
+</html>

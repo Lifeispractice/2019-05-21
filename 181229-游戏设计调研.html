@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="all" />
+    <meta name="author" content="CSOLteam" />
+    <link rel="shortcut icon" href="https://csol.tiancity.com/favicon.ico" />
+    <meta name="description" content="反恐精英Online官方网站,玩家最喜爱的FPS人气网游,火爆战场真实体验!全新缔造者模式上线，缔造属于你的枪战世界！关注官方网站了解最新游戏资讯。" />
+    <meta name="keywords" content="csol,反恐精英,cs,生化模式,反恐精英Online,csol官网,反恐精英ol,csol下载,中国僵尸,K1大赛,FPS射击游戏,僵尸,T阵营,CT阵营,世纪天成" />
+    <title>181229-游戏设计调研</title>
+    <link rel="stylesheet" href="https://img1.tiancitycdn.com/project1/csol/common/normalize.min.css">
+    <link rel="stylesheet" href="https://img1.tiancitycdn.com/project1/csol/event/2018/09/cs180920act/css/base.css?v=180920">
+</head>
+<body>
+<div class="header">
+    <script src="https://csol.tiancity.com/homepage/copyright/pageTop_utf8.js"></script>
+</div>
+<div class="wrapper">
+    <div class="pr section">
+        <div class="con con-1">
+            <a href="https://csol.tiancity.com/homepage/v6/index.html" target="_blank" class="pa logo"></a>
+            <div class="user-bar">
+                亲爱的用户，请<a href="javascript:">[登录]</a>
+            </div>
+        </div>
+        <div class="con con-2">
+            <ul class="list clearfix"></ul>
+            <div class="progress-bar">
+                <p class="progress-1"></p>
+                <p class="progress-2"></p>
+                <p class="progress-3"></p>
+            </div>
+            <a href="javascript:$.showDialog('#dialog1')" class="btn-submit"></a>
+        </div>
+    </div>
+    <div class="bg">
+        <div class="bg-01"></div>
+        <div class="bg-02"></div>
+        <div class="bg-03"></div>
+        <div class="bg-04"></div>
+        <div class="bg-05"></div>
+        <div class="bg-06"></div>
+        <div class="bg-07"></div>
+        <div class="bg-08"></div>
+        <div class="bg-09"></div>
+        <div class="bg-10"></div>
+        <div class="bg-11"></div>
+        <div class="bg-12"></div>
+        <div class="bg-13"></div>
+        <div class="bg-14"></div>
+        <div class="bg-15"></div>
+    </div>
+</div>
+<div class="footer">
+    <script src="https://csol.tiancity.com/homepage/copyright/csol_copyright_utf8.js"></script>
+</div>
+<!-- 弹窗  -->
+<div class="pop pop-text" id="dialog1">
+    <a href="javascript:;" class="pa closeBtn"></a>
+    <div class="pop-con">
+        <p class="title">至少需要选择1项喜欢及1项不喜欢的霸主角色哦~</p>
+        <a href="javascript:$.hideDialog('#dialog1')" class="btn">继续选择</a>
+    </div>
+</div>
+<div class="pop pop-text" id="dialog2">
+    <a href="javascript:;" class="pa closeBtn"></a>
+    <div class="pop-con">
+        <p class="title">至少需要选择5项喜欢及5项不喜欢的普通角色哦~</p>
+        <a href="javascript:$.hideDialog('#dialog2')" class="btn">继续选择</a>
+    </div>
+</div>
+<div class="pop pop-text" id="dialog3">
+    <a href="javascript:;" class="pa closeBtn"></a>
+    <div class="pop-con">
+        <p class="title">已经选择完毕了吗？点击确认提交问卷咯！~</p>
+        <a href="javascript:" class="btn" id="btn-pop3">确认</a>
+        <a href="javascript:$.hideDialog('#dialog3)" class="btn">继续选择</a>
+    </div>
+</div>
+<div class="pop pop-form" id="dialog4">
+    <a href="javascript:;" class="pa closeBtn"></a>
+    <div class="pop-con">
+        <p class="title">已经选择完毕了吗？<br>为了更准确的搜集信息，请补充资料</p>
+        <div class="data">
+            <div class="data-tab sex">
+                <p>性别：</p>
+                <select name="select" id="roleType">
+                    <option value="请选择性别" >请选择性别</option>
+                    <option value="男" >男</option>
+                    <option value="女" >女</option>
+                </select>
+            </div>
+            <div class="data-tab age">
+                <p>年龄：</p>
+                <select name="select" id="roleType"><option value="请选择年龄" >请选择年龄</option></select>
+            </div>
+            <div class="data-tab occupation">
+                <p>职业：</p>
+                <select name="select" id="roleType">
+                    <option value="学生" >学生</option>
+                    <option value="工作" >工作</option>
+                    <option value="其它" >其它</option>
+                </select>
+            </div>
+            <div class="data-tab game-time">
+                <p>何时进行CSOL游戏：</p>
+                <select name="select" id="roleType"><option value="请选择年份" >请选择年份</option></select>
+            </div>
+        </div>
+        <a href="javascript:;" class="btn" id="btn-pop4">确定提交</a>
+    </div>
+</div>
+<script src="https://img1.tiancitycdn.com/project5/csol2/common/jquery-1.7.2.min.js"></script>
+<script src="https://img1.tiancitycdn.com/project5/csol2/common/common-1.2.3-utf8.min.js"></script>
+<script src="https://img1.tiancitycdn.com/project1/csol/event/2018/09/cs180920act/js/base.js?v=180920"></script>
+<script>
+    $(function(){
+        // 渲染进度条，依次传入红、蓝、紫 3个数值
+        renderProgress(1000,2000,3000);
+
+        // 弹窗中确认按钮
+        $('#btn-pop3').click(function(){
+            $.hideDialog('#dialog3');
+
+            // 以下代码根据业务逻辑修改
+            $.showDialog('#dialog4');
+        });
+        // 表单提交按钮
+        $('#btn-pop4').click(function(){
+            $.hideDialog('#dialog4');
+
+            // 以下代码根据业务逻辑修改
+            alert('点击提交按钮');
+        });
+    })
+</script>
+</html>

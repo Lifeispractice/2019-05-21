@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>抽奖</title>
+<style type="text/css">
+/*九宫格抽奖*/
+.lottery_box{position:relative; margin:0 auto; width:882px; height:592px;}
+.lottery{ width:882px; height:592px; position:relative;}
+.lottery img{position:relative; top:2px; left:1px; z-index:1;}
+.lottery a{display: block; background:url(https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/gift_bg.png) no-repeat; width:282px; height:189px; position:absolute;}
+.lottery a.lottery-active{background:url(https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/sprite.png) no-repeat 0px -575px;}
+.lottery-item-1,.lottery-item-5{top:50%; margin-top:-94px;}
+.lottery-item-4,.lottery-item-5,.lottery-item-6{right:0%;}
+.lottery-item-2,.lottery-item-3,.lottery-item-4{top:0%;}
+.lottery-item-3,.lottery-item-7{margin-left:-141px;left:50%;}
+.lottery-item-6,.lottery-item-7,.lottery-item-8{bottom:0%;}
+.lottery_box a.lottery-btn{width:282px; height:190px;; background:url(https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/sprite.png) no-repeat 0px -375px; top:50%; left:50%; position:absolute; display:block; margin:-94px 0 0 -141px;}
+.lottery_box a.lottery-btn span{position:absolute; top:120px; left:0px; font-weight:bold; font-size:16px; color:#fff7e6; width: 100%; text-align:center; z-index:10}
+/*恭喜您获得奖励~*/
+.layer {position: relative;display: none;border: 1px solid #ae7c48;border-radius: 30px;background: #ffc562;padding: 20px;}
+.layer .box {background: #fff9f3;border: 1px solid #ae7c48;border-radius: 30px;width: 100%;height: 100%;overflow: hidden;}
+.layer .submit{display: block; width:150px; height:42px; position:absolute; left:50%; margin-left:-75px; bottom:40px; text-indent:-999em; background:url(https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/lq.jpg);}
+#layer2{width:430px; height:270px;}
+#layer2 h3{font-size:20px; color:#754434; text-align:center; margin-bottom:10px;}
+#layer2 .box{position: relative; overflow:inherit; width:388px; height:168px; padding:70px 20px 30px 20px;}
+#layer2 .box p{font-size:18px; color:#754434; text-align:center; line-height:40px;}
+.layer .close {position: absolute;top: -20px;right: -30px;display: block;width: 75px;height: 75px;background: url(https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/close.png) no-repeat;}
+</style>
+</head>
+<body>
+<!-- 九宫格抽奖 start -->
+<div class="lottery_box">
+	<div class="lottery lottery1" id="lottery1"></div>
+	<a href="javascript:;" class="lottery-btn"><span>*消耗1次机会</span></a>
+</div>
+<!-- 恭喜您获得奖励 -->
+<div class="layer" id="layer2">
+	<div class="box">
+        <h3>恭喜您获得奖励：</h3>
+        <p class="name"><label>XXXXXXXXXXX</label></p>
+	</div>
+    <a class="submit" href="https://pay.tiancity.com/WebCoupon"  target="_blank">前往兑换奖励</a>
+    <a class="close" href="javascript:showDialog.hide(layer2);"></a>
+</div>
+<script type="text/javascript" src="https://image.tiancity.com/common/js/jquery-1.7.2.min.js"></script>
+<script src="https://img1.tiancitycdn.com/lq/common/js/dialog.min.js"></script>
+<script src="https://img1.tiancitycdn.com/project5/csol2/common/lottery_utf8.min.js"></script>
+<!-- <script src="https://img1.tiancitycdn.com/lq/event/2018/1217cTree/js/gd.js?v=1217"></script> -->
+<script type="text/javascript">
+var lottery = new lottery();
+$(function(){
+	var _bg = '';
+	for (var i = 0; i < 20; i++) {
+		_bg +='<div class="bg'+(i+1)+'"></div>';
+	}
+	$('.bg').html(_bg);
+	var _str ='',
+		l_name = ['浪漫农场小型彩灯雪人','死神长袍','守护启示录','净化的使徒精髓','浪漫农场小型彩灯驯鹿','古代怪物核','其他','战术装备栏使用券（3天）']
+	// 九宫格
+	$.each(l_name,function(i,obj){
+		_str += '<a class="lottery-item lottery-item-'+(i+1)+'" href="javascript:;"><img alt="'+obj+'" src="https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/gift'+(i+1)+'.png" /></a>';
+	});
+	$('.lottery1').append(_str);
+	// 抽奖
+	lottery.init({
+	  container:'#lottery1',
+	  items:'.lottery-item',
+	  focusClass:'lottery-active',
+	  loop:3
+	});
+});
+function showPop_l(n,name){
+//	$('#layer6 .box').html('');
+//	$('#layer6 .box').append('<h3>恭喜您获得奖励：</h3><p class="name"><label>'+name+'</label></p>');
+	showDialog.show(layer2);
+}
+</script>
+<script>
+	$(function(){
+//    	$('.gift_li').rollbar({zIndex: 80,blockGlobalScroll:true}); //滚动条
+		// 抽奖
+	    $(".lottery_box .lottery-btn").click(function(){
+	        var index = 5,name='XXXXXXXXqweqeXXXXX';
+	        if(lottery.isStart==false){
+	            // 当抽奖未执行时才进来,防止连点
+	            // 启动抽奖
+	            lottery.start();
+	            // 设置中奖元素序号(从0开始)、回调函数
+	            lottery.stop(index,function(i){
+	                showPop_l(i,name);
+	            });
+	        }
+	    });
+	});
+</script>
+</body>
+</html>

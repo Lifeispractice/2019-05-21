@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>171227-如何减少重排和重会的过程</title>
+ </head>
+ <script type="text/javascript">
+//重排：改变页面的内容
+//重绘：浏览器显示内容
+
+window.onload = function (){
+	var oUl = document.getElementById('ull');
+
+	console.time("hello");
+	for(var i=0;i<5000;i++){
+		oLi = document.createElement('li');
+
+//		oLi.style.width = "100px";
+//		oLi.style.height = "100px";
+//		oLi.style.background = "red";
+
+		oLi.style.cssText = "width:100px;height:100px;background:red;"
+
+		oUl.appendChild(oLi);
+	}
+	console.timeEnd("hello");
+
+
+}
+ </script>
+ <body>
+<ul id="ull"></ul>
+ </body>
+</html>
+
+

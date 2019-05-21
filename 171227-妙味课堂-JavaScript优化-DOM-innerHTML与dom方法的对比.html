@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>171227-innerHTML与dom方法的对比.html</title>
+  <link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+	<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <script type="text/javascript">
+//chrome ：dom方法要比innerHTML 性能要好
+
+
+ window.onload = function (){
+	var   oUl = document.getElementById("ull");
+	var str = '';
+	console.time("Hello");	//统计一段代码的执行时间	其中console.time方法用于标记开始时间
+//	【	http://book.51cto.com/art/201405/439608.htm	（console.time方法与console.timeEnd方法）	】
+	for(var i=0;i<5000;i++){
+		oLi = document.createElement('li');	//createElement() 方法可创建元素节点。
+		oUl.appendChild(oLi);
+	}
+	console.timeEnd("Hello");	//统计一段代码的执行时间	console.timeEnd方法用于标记结束时间
+//***********************************************************************************************************************************************************
+	console.time("Hello");
+	for(var i=0;i<5000;i++){
+		str+='<li></li>';
+	}
+	oUl.innerHTML = str;
+	console.timeEnd("Hello");
+ }
+ </script>
+ <body>
+<ul id="ull"></ul>
+ </body>
+</html>

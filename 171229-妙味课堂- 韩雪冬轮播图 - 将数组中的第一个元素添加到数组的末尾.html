@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>171229-妙味课堂- 韩雪冬轮播图 - 将数组中的第一个元素添加到数组的末尾</title>
+	<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+	<style type="text/css">
+
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oDiv = document.getElementById('div1')			;
+			var oInput = document.getElementById('input1');
+
+			oInput.onclick = function(){
+					var arr = oDiv.innerHTML.split(',');	//第一步将1,2,3,4这个字符串转化为数组 加一个（split）方法进行分割  以逗号分割
+					arr.push(arr[0]);	//用（push）方法 将数组的第一个数添加至数组的末尾
+					arr.shift();
+					oDiv.innerHTML = arr;
+			}
+		}
+	</script>
+ </head>
+ <body>
+<div class="" id="div1">1,2,3,4</div>
+<input type="button" value="切换" id="input1">
+ </body>
+</html>

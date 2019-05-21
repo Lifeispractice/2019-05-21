@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="" />
+    <meta name="robots" content="all" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="Keywords" content="艾特拉战纪，projectX，艾特拉战纪预约站，projectX预约站，艾特拉战纪官网，projectX官网，艾特拉战纪手游，projectX手游，艾特拉战纪下载，projectX下载，mmo，像素，勇者骑士团，天成，世纪天成，tc">
+    <meta name="Description" content="传统日式像素风MMORPG手游《艾特拉战纪》。SNG与RPG的完美结合，让你踏上不一样的冒险之旅。数百位互动角色，30余种转职路线，上百组技能组合， 书写属于你自己的英雄传说。">
+    <title>《艾特拉战纪》官方网站—日系像素风mmo手游</title>
+    <style>
+	#bb-bookblock #bb-item img {width: 1090px; height: 758px}
+	#bb-nav-next, #bb-nav-prev {display: block; position: absolute; top: 45%; width: 86px; height: 61px}
+	#bb-nav-next {background: url(https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/btn_right.png) no-repeat; right: 0px}
+	#bb-nav-prev {background: url(https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/btn_left.png) no-repeat; left: 0px}
+	.tc {background: url(https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/bg_tc.png) no-repeat; width: 1280px; height: 780px; padding: 0px;  z-index: 100}
+	.tc .content .content_1 {padding: 9px 0 0 94px}
+	.tc .close_btn {display: block; width: 43px; height: 43px; position: absolute; top: 5px; right: 25px; z-index: 101}
+    </style>
+    <link rel="stylesheet" href="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/css/bookblock.css">
+    <script src="https://fs2.tiancity.com/homepage/event/common/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div class="tc tc_1">
+    <a class="close_btn"></a>
+    <div class="content">
+        <div class="content_1">
+            <div id="bb-bookblock" class="bb-bookblock">
+			<div class="bb-item"><img src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/1.png" alt="" /></div>
+			<div class="bb-item"><img src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/2.png" alt="" /></div>
+			<div class="bb-item"><img src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/3.png" alt="" /></div>
+			<div class="bb-item"><img src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/4.png" alt="" /></div>
+			<div class="bb-item"><img src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/images/5.png" alt="" /></div>
+            </div>
+            <a id="bb-nav-prev" href="javascript:;" class="zoom sprite pre" style="display: none;"></a>
+            <a id="bb-nav-next" href="javascript:;" class="zoom sprite next"></a>
+        </div>
+    </div>
+</div>
+<script src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/js/modernizr.custom.js"></script>
+<script src="https://img1.tiancitycdn.com/mobile/projectx/event/2018/20180417/js/jquery.bookblock.js"></script>
+<script>
+    $('.a_book1').click(function(){
+        $('.tc_1').fadeIn();
+        $(".tc_1").showLayers({closeLayer:{btn:".close_btn",callback:function(){}},maskLayer:{backgroundColor:"#000",transparent:"0.6"},callback:function(){}});
+    });
+    var Page = (function() {
+        $navPrev=$('#bb-nav-prev');
+        $navNext=$('#bb-nav-next');
+        var config = {
+                    $bookBlock : $('#bb-bookblock'),
+                    $navNext : $('#bb-nav-next'),
+                    $navPrev : $('#bb-nav-prev'),
+                    $navFirst : $('#bb-nav-first'),
+                    $navLast : $('#bb-nav-last')
+                },
+                init = function() {
+                    config.$bookBlock.bookblock( {
+                        speed : 800,
+                        shadowSides : 0.8,
+                        shadowFlip : 0.7,
+                        shadows	: false,
+                        onEndFlip:function(page,isLimit){
+                            // console.log(page+'/'+isLimit);
+                            if(isLimit=="0"){
+                                $navPrev.fadeOut();
+                            }else{
+                                $navPrev.fadeIn();
+                            }
+                            if(isLimit=="4"){
+                                $navNext.fadeOut();
+                            }else{
+                                $navNext.fadeIn()
+                            }
+                            return false;
+                        }
+                    } );
+                    initEvents();
+                },
+                initEvents = function() {
+                    var $slides = config.$bookBlock.children();
+                    totalSlides = $slides.length;
+                    // add navigation events
+                    config.$navNext.on( 'click touchstart', function() {
+                        config.$bookBlock.bookblock( 'next' );
+                        return false;
+                    } );
+                    config.$navPrev.on( 'click touchstart', function() {
+                        config.$bookBlock.bookblock( 'prev' );
+                        return false;
+                    } );
+                    config.$navFirst.on( 'click touchstart', function() {
+                        config.$bookBlock.bookblock( 'first' );
+                        return false;
+                    } );
+                    config.$navLast.on( 'click touchstart', function() {
+                        config.$bookBlock.bookblock( 'last' );
+                        return false;
+                    } );
+                    // add swipe events
+                    $slides.on( {
+                        'swipeleft' : function( event ) {
+                            config.$bookBlock.bookblock( 'next' );
+                            return false;
+                        },
+                        'swiperight' : function( event ) {
+                            config.$bookBlock.bookblock( 'prev' );
+                            return false;
+                        }
+                    } );
+                    // add keyboard events
+                    $( document ).keydown( function(e) {
+                        var keyCode = e.keyCode || e.which,
+                                arrow = {
+                                    left : 37,
+                                    up : 38,
+                                    right : 39,
+                                    down : 40
+                                };
+                        switch (keyCode) {
+                            case arrow.left:
+                                config.$bookBlock.bookblock( 'prev' );
+                                break;
+                            case arrow.right:
+                                config.$bookBlock.bookblock( 'next' );
+                                break;
+                        }
+                    } );
+                };
+        return { init : init };
+    })();
+    Page.init();
+</script>
+</body>
+</html>

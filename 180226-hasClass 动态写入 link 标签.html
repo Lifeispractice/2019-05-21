@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>180226-hasClass 动态写入 link 标签</title>
+<link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+<script type="text/javascript" src="https://image.tiancity.com/common/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div class="canvas" id="test" style="font-size: 30px; color: #fff; ">浏览器支持CSS3时写入media.css文件 F12查看 head 标签</div>
+<script type="text/javascript">
+$(function(){
+	 // 浏览器支持CSS3时写入media.css文件
+	  if($('#test').hasClass('canvas')){
+		  console.log('asdad');
+		var mediaCSS = $('<link>').attr({
+			'href':'https://img1.tiancitycdn.com/project5/csol2/event/2016/1103default/css/media.css',
+			'type':'text/css',
+			'rel':'stylesheet'
+		})
+		$('head').append(mediaCSS);
+	};
+})
+</script>
+</body>
+</html>

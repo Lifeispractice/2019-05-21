@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>171227-offsetLeft、offsetTop</title>
+  <style type="text/css">
+  #div1{width:100px;height:100px;background:#f00;position: absolute;};
+  </style>
+ </head>
+<!--  <script type="text/javascript"> -->
+<!-- window.onload = function (){ -->
+<!-- 	var oDiv = document.getElementById("div1"); -->
+<!-- 	setInterval(function(){ -->
+<!-- 		oDiv.style.left = oDiv.offsetLeft + 10 + "px";		//	 offset() 方法	获得元素当前的偏移： -->
+<!-- 		oDiv.style.top = oDiv.offsetTop + 10 + "px"; -->
+<!-- 	},1000); -->
+<!-- } -->
+<!--  </script> -->
+
+<!-- 尽量采用下面的方式来做 -->
+  <script type="text/javascript">
+window.onload = function (){
+	var oDiv = document.getElementById("div1");
+	var L = oDiv.offsetLeft;
+	var T = oDiv.offsetTop;
+	setInterval(function(){
+		L+=10;
+		T+=10;
+		oDiv.style.left = L + "px";		//	 offset() 方法	获得元素当前的偏移：
+		oDiv.style.top = T + "px";
+	},1000);
+}
+ </script>
+ <body>
+<div id="div1"></div>
+ </body>
+</html>
+
+

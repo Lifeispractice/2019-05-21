@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>180308-轮播</title>
+  <link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+ </head>
+ <style type="text/css">
+.Picbanner{height:220px;left:0;top:0;position: absolute;}
+.Picbanner .pre{background:url(https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/btn_l.png) no-repeat;width:62px;height:107px;position:absolute;left:0;top:50%;margin-top:-53px;font-size:0;}
+.Picbanner .next{background:url(https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/btn_r.png) no-repeat;width:62px;height:107px;position:absolute;right:0;top:50%;margin-top:-53px;font-size:0;}
+.Picbanner .pic-box { position: relative; overflow:hidden;width:390px;height:220px;}
+.Picbanner .pic-box ul{width:100%;height:100%;}
+.Picbanner .pic-box li { list-style: none; }
+.Picbanner .pic-box ul li { float: left;width:390px;height:220px;}
+.Picbanner .pic-box ul li img{width: 390px;height: 220px;}
+.Picbanner .runNum{display:block;position: absolute;right: 0;}
+.Picbanner .runNum a{width: 20px;height: 20px;background: #fff;display: inline-block;margin: 0px 1px;text-align: center;line-height: 20px;}
+.Picbanner2{top:400px;}
+ </style>
+ <body>
+<div class="Picbanner">
+	<div id="pic-box1" class="pic-box">
+		<ul>
+			<li><img src="https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/pic0.jpg"></li>
+			<li><img src="https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/pic1.jpg"></li>
+			<li><img src="https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/pic2.jpg"></li>
+		</ul>
+	</div>
+</div>
+<div class="Picbanner Picbanner2">
+	<div id="pic-box2" class="pic-box">
+		<ul>
+			<li><img src="https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/pic0.jpg"></li>
+			<li><img src="https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/pic1.jpg"></li>
+			<li><img src="https://img1.tiancitycdn.com/cls/event/2018/cls0125djhAct/images/pic2.jpg"></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="https://img1.tiancitycdn.com/cls/homepage/v1/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="https://img1.tiancitycdn.com/project5/csol2/common/common-1.2.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#pic-box1').RunHorse({'mode':'slide','speed':'10','wait':'1000','toggleBtn':true});
+	$('#pic-box2').RunHorse({'mode':'slide','speed':'10','wait':'1000','toggleBtn':true});
+})
+</script>
+ </body>
+</html>

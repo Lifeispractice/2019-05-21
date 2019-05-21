@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="all" />
+    <meta name="author" content="CLSteam" />
+    <link rel="shortcut icon" href="http://cls.tiancity.com/favicon.ico" />
+    <meta name="keywords" content="封印者,动漫游戏,动作游戏,二次元,刀剑神域,异次元世界,超能力,DNF,艾尔之光,疾风之刃,closers,人气新游,新游,热门游戏,幻想神域,ACG,正太,御姐,宅文化,动画,漫画" />
+    <meta name="description" content='《封印者》是一款集动漫画风、轻小说剧情、极速战斗于一体的二次元ACG向游戏。绝赞暴走流战斗体验，画面绚丽炸裂显卡！还想prprpr粉毛萝莉和可爱正太？即刻穿越二次元！' />
+    <title>《封印者》官方网站 - 二次元动漫动作游戏</title>
+    <link rel="stylesheet" href="https://img1.tiancitycdn.com/cls/event/2018/1121transfer4/css/main.css?v=1">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="flower" data-step="40"></div>
+        <div class="wrapper-cnt" data-id="role1">
+            <a href="https://cls.tiancity.com/homepage/v1/index.html" class="logo"></a>
+            <div class="left-role">
+                <img src="https://img1.tiancitycdn.com/cls/event/2018/1121transfer4/images/b_role1.png">
+            </div>
+            <div class="slogan">
+                <img src="https://img1.tiancitycdn.com/cls/event/2018/1121transfer4/images/slogan1.png">
+            </div>
+            <div class="role-msg">
+                <div class="role-box">
+                    <div class="tips"></div>
+                    <div class="sub-btn">
+                        <a href="javascript:;" class="on" data-url="https://img1.tiancitycdn.com/cls/event/2018/1121transfer4/images/role1_person.png">形象设定图</a>
+                        <a href="javascript:;" data-url="https://img1.tiancitycdn.com/cls/event/2018/1121transfer4/images/role1_wepon.png">武器设定图</a>
+                    </div>
+                </div>
+                <div class="role-btn">
+                    <span class="rb1 on"><a data-id="role1" href="javascript:;"></a></span>
+                    <span class="rb2"><a data-id="role3" href="javascript:;"></a></span>
+                    <span class="rb3"><a data-id="role2" href="javascript:;"></a></span>
+                    <span class="rb4"><a href="https://tieba.baidu.com/p/5957467077" target="blank"></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cls.tiancity.com/homepage/copyright/cls_copyright_utf8.js"></script>
+    <script type="text/javascript" src="https://img1.tiancitycdn.com/cls/homepage/v1/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://img1.tiancitycdn.com/project5/csol2/common/common-1.2.2.min.js"></script>
+    <script type="text/javascript" src="https://img1.tiancitycdn.com/project1/azera/util/alongMove/alongMove.min.js"></script>
+    <script>
+        $(function () {
+            $('.flower').alongMove();
+            var _url = 'https://img1.tiancitycdn.com/cls/event/2018/1121transfer4/images/';
+            var _date = {
+                'role1': {
+                    'person': 'role1_person.png',
+                    'wepon': 'role1_wepon.png',
+                    'rolepic': 'b_role1.png',
+                    'tips': 'tips1.png',
+                    'slogan': 'slogan1.png'
+                },
+                'role2': {
+                    'person': 'role2_person.png',
+                    'wepon': 'role2_wepon.png',
+                    'rolepic': 'b_role2.png',
+                    'tips': 'tips2.png',
+                    'slogan': 'slogan2.png'
+                },
+                'role3': {
+                    'person': 'role3_person.png',
+                    'wepon': 'role3_wepon.png',
+                    'rolepic': 'b_role3.png',
+                    'tips': 'tips3.png',
+                    'slogan': 'slogan3.png'
+                }
+            },
+                $wrapperCnt = $('.wrapper-cnt'),
+                $rolepic = $('.left-role img'),
+                $tips = $('.tips'),
+                $slogan = $('.slogan img'),
+                $subBtnA = $('.role-box .sub-btn a'),
+                $person = $subBtnA.eq(0),
+                $wepon = $subBtnA.eq(1);
+
+            if (getUrlParam("item") == 1) {
+                $wrapperCnt.attr('data-id', 'role1');
+                homeFn();
+                $('.role-btn span a').eq(0).parent().addClass('on').siblings('span').removeClass('on');
+            } else if (getUrlParam("item") == 2) {
+                $wrapperCnt.attr('data-id', 'role2');
+                homeFn();
+                $('.role-btn span a').eq(2).parent().addClass('on').siblings('span').removeClass('on');
+            } else if (getUrlParam("item") == 3) {
+                $wrapperCnt.attr('data-id', 'role3');
+                homeFn();
+                $('.role-btn span a').eq(1).parent().addClass('on').siblings('span').removeClass('on');
+            }
+            // 角色切换
+            $('.role-btn span a').click(function () {
+                if ($wrapperCnt.attr('data-id') == $(this).attr('data-id')) {
+                    return
+                } else {
+                    $wrapperCnt.attr('data-id', $(this).attr('data-id'));
+                    $(this).parent().addClass('on').siblings('span').removeClass('on');
+                    homeFn()
+                }
+            })
+            // 形象 武器切换
+            $subBtnA.on('click', function () {
+                var _index = $(this).index();
+                comFn(_index);
+            })
+            function homeFn() {
+                $.each(_date, function (key, val) {
+                    if (key == $wrapperCnt.attr('data-id')) {
+                        $person.attr('data-url', _url + val.person);
+                        $wepon.attr('data-url', _url + val.wepon);
+                        $rolepic.attr('src', _url + val.rolepic);
+                        $tips.css('background-image', 'url(' + _url + val.tips + ')');
+                        $slogan.attr('src', _url + val.slogan);
+                        comFn(0);
+                    } else {
+                        return
+                    }
+                })
+            }
+
+            function comFn(idx) {
+                $subBtnA.eq(idx).addClass('on').siblings().removeClass('on');
+                $subBtnA.parent().parent().css({
+                    'background-image': 'url(' + $subBtnA.eq(idx).attr('data-url') + ')'
+                });
+            }
+            function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+
+        })
+    </script>
+</body>
+
+</html>

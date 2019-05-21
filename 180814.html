@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>180814</title>
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="https://img1.tiancitycdn.com/project1/csol/common/Yplayer/Yplayer.js"></script>
+ </head>
+ <body>
+<style type="text/css">
+.tab{padding-top:50px;}
+.tab a{width:80px;height:30px;line-height:30px;float:left;display:block;font-size:14px;text-align:center;color:#fff;box-shadow:0px 0px 0px 1px #fff;}
+.link,.link2{margin-left:20px;}
+.sect-video{clear:both;width:390px;padding-top:50px;}
+.sect-video .btn-video {position: relative;width: 170px;height: 100px;margin-bottom: 19px;overflow: hidden;display: block;float: left;margin-right:20px;}
+.sect-video .btn-video div {position: absolute;top: 0;left: 0;z-index: 2;width: 170px;height: 100px;}
+.sect-video .btn-video div p {position: absolute;bottom: 0;left: 0;width: 170px;line-height: 24px;color: #fff;font-size: 12px;background: rgba(0,0,0,.6);text-align: center;}
+.sect-video .btn-video div i {position: absolute;top: 50%;left: 50%;margin: -25px 0 0 -20px;width: 35px;height: 35px;background: url(https://img1.tiancitycdn.com/csol/homepage/v6/new/images/sprite.png) no-repeat 0 -200px;}
+</style>
+<!-- 新闻资讯 -->
+ <div class="tab">
+	<div class="btn">
+		<a href="1111111">综合</a>
+		<a href="2222222">热点</a>
+		<a href="3333333">赛事</a>
+		<a href="4444444">活动</a>
+		<a href="5555555">公告</a>
+	</div>
+	<a href="javascript:;" class="link">更多</a>
+	<a href="javascript:;" class="link2">数组</a>
+ </div>
+<!--  精彩视频 -->
+<div class="sect-video"></div>
+<script type="text/javascript">
+var CSOL = {
+	newsPage : [
+		'1111111',
+		'2222222',
+		'3333333',
+		'4444444',
+		'5555555'
+	],
+	video : [
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/6.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/02/cs180207ver/video/ver_c.flv','title':'缔造者新玩法 【拆】'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/8.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/07/cs180719sale/images/cs180718video.flv','title':'恶灵降世 尸族崛起'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/7.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/07/cs180704sale/images/video704.flv','title':'朱雀涅槃 逃杀来袭'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/1.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/06/cs180606sale/js/180606video.flv','title':'天龙归位 金焰焚天'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/2.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/05/cs180509sale/images/video0509.flv','title':'双龙降世 冰火争锋'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/3.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/04/cs180425sale/images/20180425-Video.flv','title':'枪斗秘术 深渊降世'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/4.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/04/cs180411act/images/180419vidoe.flv','title':'缔造征途 星辰大海'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/5.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/03/cs180314sale/images/ver_0314.flv','title':'冒险岛2 凶萌来袭'},
+		{'img':'https://img1.tiancitycdn.com/csol/homepage/v6/new/images/video/6.jpg','url':'https://img1.tiancitycdn.com/project1/csol/event/2018/02/cs180207ver/video/ver_c.flv','title':'缔造者新玩法 【拆】'}
+	]
+}
+//CSOL新闻资讯的点击切换（更多）按钮的链接
+$('.btn a').each(function(i){
+	var linkB = $('.btn a').eq(i).attr('href'),
+	       link2 = CSOL.newsPage[i];
+	$(this).hover(function(){
+		$('.link').attr('href',linkB);
+		$('.link2').attr('href',CSOL.newsPage[i]);
+
+		$('.link').text(linkB);
+		$('.link2').text(link2);
+	});
+});
+//生成CSOL官网精彩视频的结构
+var tem ='';
+for(var i = 0; i < 6; i ++){
+	tem += '<a href="javascript:;" class="btn-video"><div><p>敬请期待</p><i></i></div></a>';
+}
+$('.sect-video').append(tem);
+//CSOL官网精彩视频的内容填充
+if(CSOL.video){
+    $.each(CSOL.video,function(idx,_video){
+	if(idx<6){
+	    (function(i){
+		$('.sect-video .btn-video').eq(i).find('p').html(_video.title);
+		$('.sect-video .btn-video').eq(i).append('<img src="'+_video.img+'">');
+		var _name = 'video_'+(i+1);
+		window[_name] = new Yplayer({
+		    "url":_video.url,
+		    "width":720,
+		    "height":410,
+		    "auto":1,
+		    "showbar":3,
+		    "showtime":1,
+		    "repeat":0
+		});
+		$('.sect-video .btn-video').eq(i).attr('href','javascript:'+_name+'.Pop()');
+	    })(idx);
+	}
+    });
+}
+</script>
+</body>
+</html>

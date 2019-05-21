@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>180307-火花</title>
+  <link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+	<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+	<script src="https://img1.tiancitycdn.com/lq/event/2018/0124Topic/js/jquery-1.8.3.min.js"></script>
+<!-- 	<script src="https://img1.tiancitycdn.com/lq/event/2018/0111act/js/snow.js?v=1"></script> -->
+	<style type="text/css">
+	.snow_box{position: absolute; width: 1920px; top:0px; left: 50%; margin-left: -960px; height: 1020px; z-index: 3;}
+	.snow img{width: 100%; height: 100%; display: block;}
+	</style>
+ </head>
+ <body>
+<div class="snow_box"></div>
+<script type="text/javascript">
+var minSize = 10;//图片大小
+var maxSize = 30;//图片大小
+var newOn = 300;//图片的密度 值越大密度越小
+var flake = $("<div class='snow'><img src='https://img1.tiancitycdn.com/lq/event/2018/0111act/images/snow.png'/></div>").css({ "position": "absolute", "bottom": "-60px"});
+$(function () {
+   var documentHeight = $('.snow_box').height();
+   var documentWidth = $('.snow_box').width();
+	setInterval(function () {
+		var startPositionLeft = Math.random() * documentWidth;
+		var sizeFlake = minSize + Math.random() * maxSize;
+		var endPositionLeft = Math.random() * documentWidth;
+		//var durationFall = documentHeight * 10 + Math.random() * 3000;
+		var startOpacity = 0.9 + 0.1 * Math.random();
+		var endOpacity = 0.5 * Math.random();
+		flake.clone().appendTo($('.snow_box')).css({
+			"left": startPositionLeft,
+			"opacity": startOpacity,
+			"width": sizeFlake,
+			"height": sizeFlake,
+			"color": "#fff"
+		}).animate({
+			"bottom": documentHeight - (maxSize + 50),
+			"left": endPositionLeft,
+			"opacity": endOpacity
+		}, 2000, function () {
+			$(this).remove();
+		});
+	}, newOn);
+});
+</script>
+ </body>
+</html>

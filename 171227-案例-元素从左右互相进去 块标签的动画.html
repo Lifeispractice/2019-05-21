@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>元素从左右互相进去 块标签的动画</title>
+<link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+<style type="text/css">
+	body *{border:1px solid #f00}
+	.left{position: relative;}
+	.left,.right{font-size:30px;font-weight:bold;color:#fff;width:600px;margin:0 auto;}
+	.left{-webkit-transform:translateX(-250%);transform:translateX(-250%);-webkit-animation:sectitle0 1s ease-in-out .1s forwards;animation:sectitle0 1s ease-in-out .1s forwards}
+	.right{-webkit-transform:translateX(250%);transform:translateX(250%);-webkit-animation:sec0 1s ease-in-out .1s forwards;animation:sec0 1s ease-in-out .1s forwards}
+	.box{position:absolute;top:50%;width:100%;-webkit-transform:translateY(-50%);transform:translateY(-50%);text-align:center}
+	/*可以调整下面的值    来控制元素显示的初始位置  translateX  上下的值是对应的*/
+	@-webkit-keyframes sectitle0{0%{-webkit-transform:translateX(-250%);transform:translateX(-250%)}
+	100%{-webkit-transform:translateX(0);transform:translateX(0)}
+	}
+	@keyframes sectitle0{0%{-webkit-transform:translateX(-250%);transform:translateX(-250%)}
+	100%{-webkit-transform:translateX(0);transform:translateX(0)}
+	}
+	@-webkit-keyframes sec0{0%{-webkit-transform:translateX(250%);transform:translateX(250%)}
+	100%{-webkit-transform:translateX(0);transform:translateX(0)}
+	}
+	@keyframes sec0{0%{-webkit-transform:translateX(250%);transform:translateX(250%)}
+	100%{-webkit-transform:translateX(0);transform:translateX(0)}
+	}
+
+</style>
+</head>
+<body>
+<div class="box">
+	<p class="left">switchPage.js-简单的jQuery全屏滚动翻页插件</p>
+	<p class="right">A Beautiful Fullscreen Scrolling Websites Using switchPage.js</p>
+</div>
+</body>
+</html>

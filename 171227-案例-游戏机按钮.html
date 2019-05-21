@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>游戏机按钮</title>
+  <link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+	<script src="http://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <style type="text/css">
+.btn{height:43px;width: 51px;display: block;margin: 370px 0 0 372px;background: url(https://img1.tiancitycdn.com/project2/krmgt/2017/03/kr0330act/images/button.png) no-repeat -52px 0}
+.on{background-position:0 0;}
+.btn:hover{background-position: 0 0;}
+ </style>
+ <body>
+  <a href="javascript:;" class="btn"></a>
+ </body>
+</html>
+<script type="text/javascript">
+$(function(){
+	 var trigger =false;
+	setInterval(function(){
+            if(trigger){
+                $(".btn").addClass('on');
+                trigger=false;
+            }else{
+                $(".btn").removeClass('on');
+                trigger=true;
+            }
+        },500);
+})
+</script>

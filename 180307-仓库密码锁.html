@@ -1,0 +1,105 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="gb2312">
+<meta name="Keywords" content="反恐精英OL2,反恐精英Online2, CS2,CSOL2,CSO2,反恐精英ol2,反恐精英online2, cs2,csol2,cso2,反恐精英OL2官网, CSOL2官网,CSO2官网, 反恐精英online2官网,反恐精英OL2游戏,反恐精英OL2下载，反恐精英OL2激活码,CSOL2激活码,CSOL2视频,CSO2图片,FPS网络游戏,FPS">
+<meta name="Description" content="反恐精英Online2-官方网站-永远的FPS精神！关注官方网站了解最新游戏资讯。">
+<link rel="shortcut icon" href="//csol2.tiancity.com/favicon.ico">
+<title>仓库密码锁-反恐精英Online2-官方网站</title>
+<link rel="stylesheet" href="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/css/base.css?v=0111">
+</head>
+<body>
+<h1 class="hdt">仓库密码锁，开启账号安全保护</h1>
+<div class="wrapper">
+    <div class="section">
+        <div class="con con_1">
+            <a href="//csol2.tiancity.com/homepage/v3/index.html" target="_blank" class="logo"></a>
+            <a href="javascript:clickPlay('//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/video/ver170112.flv','640','360','tc',1);" class="play"></a>
+        </div>
+        <div class="con con_2"></div>
+        <div class="con con_3">
+            <div class="dog"></div>
+            <div class="ghost wave"></div>
+            <div class="msg">
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_1.png" alt="">
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_2.png" alt="">
+                <div class="box"><img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_3.png" alt=""><p class="pop_1"></p></div>
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_4.png" alt="">
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_5.png" alt="">
+                <div class="box"><img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_6.png" alt=""><p class="pop_2"></p></div>
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_7.png" alt="">
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_8.png" alt="">
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_9.png" alt="">
+                <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/msg_10.png" alt="">
+            </div>
+        </div>
+        <div class="con con_4">
+            <a href="//csol2.tiancity.com/homepage/event/2017/0111event" target="_blank" class="evt_1"></a>
+            <a href="//csol2.tiancity.com/homepage/event/2017/0111event" target="_blank" class="evt_2"></a>
+        </div>
+        <div class="con con_5">
+            <img src="//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/map_1.jpg" alt="" class="map">
+            <div class="btns">
+                <a href="javascript:;" class="btn btn_1 on"></a>
+                <a href="javascript:;" class="btn btn_2"></a>
+                <a href="javascript:;" class="btn btn_3"></a>
+            </div>
+        </div>
+    </div>
+    <div class="bg">
+        <div class="bg_01"></div>
+        <div class="bg_02"></div>
+        <div class="bg_03"></div>
+        <div class="bg_04"></div>
+        <div class="bg_05"></div>
+        <div class="bg_06"></div>
+        <div class="bg_07"></div>
+        <div class="bg_08"></div>
+        <div class="bg_09"></div>
+    </div>
+</div>
+<script src="//csol2.tiancity.com/homepage/title/pagetop.js"></script>
+<div id="footer">
+    <script src="//csol2.tiancity.com/homepage/event/copyright/cs2_copyright2.js"></script>
+</div>
+
+<script src="//csol2.tiancity.com/homepage/event/common/jquery-1.7.2.min.js"></script>
+<script src="//csol2.tiancity.com/homepage/event/common/common-1.2.2.min.js"></script>
+<script src="//image.tiancity.com/player/js/videoplay-js.min.js"></script>
+<script type="text/javascript">
+var msgIdx = 0, msgHeight = 0, msgHeights = [58,58,71,58,78,142,58,78,58,76], timer = null;
+$(function(){
+    if($(document).scrollTop() > 900){ active(); }
+    $(window).scroll(function(){
+        var scrollTop = $(document).scrollTop();
+        if(scrollTop > 900 && timer == null){
+            active();
+        }
+    });
+
+    $(".con_5 .btns a").each(function(i){
+        $(this).click(function(){
+            $(".con_5 .map").attr('src','//img1.tiancitycdn.com/project5/csol2/event/2017/0111version/images/map_'+(i+1)+'.jpg');
+            $(this).addClass("on").siblings().removeClass("on");
+        });
+    });
+
+$(".con_3 .box").mouseenter(function(){
+        $(this).find("p").fadeIn(300);
+    });
+    $(".con_3 .box").mouseleave(function(){
+        $(this).find("p").fadeOut(100);
+    });
+});
+
+function active(){
+    timer = setInterval(function(){
+        msgHeight += msgHeights[msgIdx]
+        $(".con_3 .msg").css('height',msgHeight);
+        $(".con_3 .msg img").eq(msgIdx).fadeIn(400);
+        msgIdx++;
+        if(msgIdx == 11) { clearInterval(timer);}
+    }, 400);
+}
+</script>
