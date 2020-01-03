@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>封印者官网导航</title>
+<link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+<script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<style type="text/css">
+.nav{position:relative;z-index:1;}
+.nav .subnav{position:absolute;left:224px;top:0;overflow:hidden;}
+.nav .subnav ul{background:no-repeat center top;margin-left:-247px;transition:margin-top 0.5s;text-align:center;}
+.nav .subnav ul li a{display:block;width:100%;height:100%;}
+.nav .subnav ul.subnav-data{background-image:url(https://img1.tiancitycdn.com/cls/homepage/v2/images/home/subnav_data.png);height:232px;margin-left:0;width:167px;padding-top:64px}
+.nav .subnav ul.subnav-data li{height:28px;padding-bottom:14px;}
+.nav .subnav ul.subnav-news{background-image:url(https://img1.tiancitycdn.com/cls/homepage/v2/images/home/subnav_news.png);height:215px;margin-left:0;width:181px;margin-top:60px;padding-top:52px;}
+.nav .subnav ul.subnav-news li{height:28px;padding-bottom:14px;}
+.nav .subnav ul.subnav-download{background-image:url(https://img1.tiancitycdn.com/cls/homepage/v2/images/home/subnav_download.png);height:213px;margin-left:0;width:187px;margin-top:150px;padding-top:50px;}
+.nav .subnav ul.subnav-download li{height:28px;padding-bottom:14px;}
+.nav .subnav ul.subnav-active{background-image:url(https://img1.tiancitycdn.com/cls/homepage/v2/images/home/subnav_active.png);height:164px;margin-left:0;width:197px;margin-top:200px;padding-top:56px;}
+.nav .subnav ul.subnav-active li{height:30px;padding-bottom:14px;}
+.nav .subnav ul.subnav-interaction{background-image:url(https://img1.tiancitycdn.com/cls/homepage/v2/images/home/subnav_interaction.png);height:222px;margin-left:0;width:178px;margin-top:282px;padding-top:42px;}
+.nav .subnav ul.subnav-interaction li{height:30px;padding-bottom:14px;}
+.nav .subnav ul.subnav-customer{background-image:url(https://img1.tiancitycdn.com/cls/homepage/v2/images/home/subnav_customer.png);height:188px;margin-left:0;width:174px;margin-top:360px;padding-top:57px;}
+.nav .subnav ul.subnav-customer li{height:30px;padding-bottom:14px;}
+</style>
+<div class="nav">
+	<img class="nav_pic" src="https://img1.tiancitycdn.com/cls/homepage/v2/images/home/main_left_nav.png" alt="导航" usemap="#Map" id="area">
+	<map name="Map">
+		<area shape="poly" coords="43,24,220,2,206,70,167,76,26,73" href="https://cls.tiancity.com/event/simpleguide/" target="_blank" title="游戏资料" id="data">
+		<area shape="poly" coords="34,104,167,76,206,70,200,118,74,170,34,178" href="https://cls.tiancity.com/homepage/article/Class_1187_Time_1.html" target="_blank" title="游戏新闻" id="news">
+		<area shape="poly" coords="34,178,74,170,212,146,198,214,161,222,18,225" href="https://cls.tiancity.com/homepage/download/" title="下载中心" target="_blank" id="download">
+		<area shape="poly" coords="27,256,161,222,198,214,192,262,88,309,27,319" href="https://pay.tiancity.com/PortalPrize" title="活动中心" target="_blank" id="active">
+		<area shape="poly" coords="198,214,88,309,208,283,194,352,157,360,15,370" href="http://clsbbs.tiancity.com/forum.php" title="互动专区" target="_blank" id="interaction">
+		<area shape="poly" coords="24,400,157,360,194,352,189,398,25,479" href="http://know.tiancity.com/" title="客服专区" target="_blank" id="customer">
+	</map>
+	<div class="subnav"><ul></ul></div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var oldPic="main_left_nav";
+	var onLoadSrc="https://img1.tiancitycdn.com/cls/homepage/v2/images/home/";
+	var $mapPic=$(".nav .nav_pic");
+	var $subnav=$(".nav .subnav");
+	var subnavPic="subnav";
+	var oTimer=null;
+	var $nowId=null;
+	var _Data={
+		"data":[
+			["攻略百科","游戏背景","角色介绍","操作指南"],
+			["http://clsbbs.tiancity.com/web/home.html","https://cls.tiancity.com/event/simpleguide/","https://cls.tiancity.com/event/simpleguide/?Itemid=2","https://cls.tiancity.com/event/simpleguide/?Itemid=3"]
+		],
+		"news":[
+			["游戏新闻","游戏公告","系统公告","社区新闻"],
+			["https://cls.tiancity.com/homepage/article/Class_1188_Time_1.html","https://cls.tiancity.com/homepage/article/Class_1189_Time_1.html","https://cls.tiancity.com/homepage/article/Class_1190_Time_1.html","https://cls.tiancity.com/homepage/article/Class_1200_Time_1.html"]
+		],
+		"download":[
+			["游戏下载","原画壁纸","同人专区","视频中心","表情下载"],
+			["https://cls.tiancity.com/homepage/download/","https://cls.tiancity.com/homepage/v1/appreciate.html","https://cls.tiancity.com/homepage/v1/fan.html","http://space.bilibili.com/52229030/#!/","https://cls.tiancity.com/homepage/article/2019/01/30/56443.html"]
+		],
+		"active":[
+			["兑换超能元素","实物领奖","虚拟领奖"],
+			["https://pay.tiancity.com/GCExchange/Exchange/Exchange?ServiceCode=SVG039","http://app.tiancity.com/portalprize/index.html","http://pay.tiancity.com/webcoupon/index2.html?acode=gnb&bannerName=webcoupon"]
+		],
+		"interaction":[
+			["官方论坛","官方微博","官方微信","百度贴吧"],
+			["http://clsbbs.tiancity.com/forum.php","http://weibo.com/clsol","javascript:ewmAdd();","https://tieba.baidu.com/f?kw=closers"]
+		],
+		"customer":[
+			["在线客服","客服中心","安全中心"],
+			["http://help.tiancity.com/Home/Chat","http://know.tiancity.com/","https://aq.tiancity.com/Home/default/?acode=portalweb&bannerName=sec"]
+		]
+	};
+	// var enterPagex,leavePagex;
+	$(".nav area").hover(function(e){
+		clearTimeout(oTimer);
+		$subnav.find("ul").hide().html("");
+		$nowId=$(this).attr("id");
+		$mapPic.attr("src",onLoadSrc+oldPic+"_"+$nowId+".png");
+		$subnav.find("ul").show().attr("class","subnav-"+$nowId);
+		$.each(_Data,function(a,i){
+			if(a==$nowId){
+				for(var j=0;j<i[1].length;j++){
+					$subnav.find("ul").append("<li><a target=\"_blank\" href="+i[1][j]+" title="+i[0][j]+"></a></li>")
+				}
+			}
+		})
+	},function(e){
+		$mapPic.attr("src",onLoadSrc+oldPic+".png");
+		oTimer=setTimeout(function(){
+			$subnav.find("ul").hide().html("");
+		},100);
+		$subnav.hover(function(){
+			clearTimeout(oTimer);
+		},function(){
+			$subnav.find("ul").hide().html("");
+		})
+	})
+})
+</script>
+</body>
