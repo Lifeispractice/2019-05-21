@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>20200423-ES6实现留言板</title>
+  <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+  <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <body>
+<style type="text/css">
+body{background:
+radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.15) 30%, rgba(255,255,255,.3) 32%, rgba(255,255,255,0) 33%) 0 0,
+radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.1) 11%, rgba(255,255,255,.3) 13%, rgba(255,255,255,0) 14%) 0 0,
+radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 17%, rgba(255,255,255,.43) 19%, rgba(255,255,255,0) 20%) 0 110px,
+radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 11%, rgba(255,255,255,.4) 13%, rgba(255,255,255,0) 14%) -130px -170px,
+radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 11%, rgba(255,255,255,.4) 13%, rgba(255,255,255,0) 14%) 130px 370px,
+radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.1) 11%, rgba(255,255,255,.2) 13%, rgba(255,255,255,0) 14%) 0 0,
+linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
+background-size: 470px 470px, 970px 970px, 410px 410px, 610px 610px, 530px 530px, 730px 730px, 100% 100%;
+background-color: #840b2a;}
+body {height: 1000px;width: 100%;}
+.leaving{width: 500px;background: #fff;color: #000;border: 20px solid #fff;overflow: hidden;position: absolute;top: 50%;left: 50%;margin: -200px 0 0 -290px;padding: 0px 20px;border-radius: 20px;}
+.leaving p{width: 100%;text-align: left;color: #000;line-height: 30px;overflow: hidden;padding: 11px 0;font-weight: 900;letter-spacing: 10px;font-size: 20px;}
+.leaving .list_message_items{width: 100%;}
+.leaving .list_message_items li{width: 100%;margin-bottom: 2px;font-weight: 900;background-image: linear-gradient(141deg,#9fb8ad 0%,#1fc8db 51%,#2cb5e8 75%);font-size: 17px;border-radius: 5px;text-indent: 20px;height: 40px;line-height: 40px;margin: 5px 0;}
+.leaving .list_message_items li span{}
+.leaving p .theme {background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));border: none;padding: 10px 10px;font-size: 20px;}
+.leaving p .name {height: 20px;line-height: 30px;}
+.leaving p input.submit {width: 140px;height: 38px;line-height: 38px;font-weight: bold;color: #fff;border-radius: 5px;overflow: hidden;outline: none;font-size: 16px;border:none;margin: 0 auto;display: block;position: relative;left: 50px;}
+.leaving p input.submit {background-image: linear-gradient(141deg,#9fb8ad 0%,#1fc8db 51%,#2cb5e8 75%);}
+.leaving p input.submit:hover{background-image: linear-gradient(141deg,#2cb5e8 0%,#1fc8db 51%,#9fb8ad 75%);color:#000;}
+.leaving p textarea {resize: none;height: 150px;}
+.leaving .name,.leaving .message{width: 76%;float: right;}
+.leaving .list_titile{background: #3b88ce;color: #fff;font-weight: 900;font-size: 18px;border-top-left-radius: 8px;border-top-right-radius: 8px;width: 100%;text-indent: 20px;}
+ </style>
+<div class="leaving">
+	<p>昵称：<input type="text" class="name theme" /></p>
+	<p class="leav">留言：<textarea class="message theme"></textarea></p>
+	<p class="subbox"><input type="button" class="submit black" value="提交留言" /></p>
+	<p class="list_titile">留言列表</p>
+	<ul class="list_message_items"></ul>
+</div>
+<script type="text/javascript">
+$(function(){
+	const m = new Map();
+	$(".submit").click( () => {
+		sub();
+	})
+	$(document).keydown(function(event){
+		    if(event.keyCode==13){
+			$(".submit").click();
+		    }
+	 });
+	//提交数据
+	function sub(){
+		let  _name = $(".name").val(),
+		      _msg = $(".message").val();
+		if(  _name == null || _name == undefined || _name == '' ){
+			alert('未填写昵称');
+		}else if(  _msg == null || _msg == undefined || _msg == '' ){
+			alert('未填写留言');
+		}else{
+			m.set(_name,_msg);
+			listShow();
+		}
+		$('.name,.message').val("");
+	}
+	//展示数据
+	let listShow = () =>{
+		let str = '';
+		for(let [key,value] of m ){
+			str += `<li>${key}<span>说：</span>${value}</li>`
+		}
+		$(".list_message_items").html(str);
+	}
+})
+</script>
+</body>
+</html>
