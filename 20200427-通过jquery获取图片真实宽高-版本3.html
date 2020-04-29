@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>20200427-通过jquery获取图片真实宽高-版本2</title>
+  <script type="text/javascript" src="https://image.tiancity.com/common/js/jquery-1.7.2.min.js"></script>
+<!--
+**获取文件名 bat 代码**
+
+@echo off
+for /f "delims=" %%a in ('dir /b/a-d/oN *.*') do echo %%a >>name.txt
+
+HTML转换为JS数组：https://qqe2.com/format/js2html
+-->
+</head>
+<body>
+<style type="text/css">
+img {width: auto !important;height: 100px !important;float: left;border: 1px solid #f00;color: #fff;}
+.size {position: relative;height: auto;width: fit-content;float: left;margin:40px;}
+.size p {position: absolute;top: -15px;left: 0px;background: #000;color: #fff;padding: 4px 10px;}
+.size span {display:block;position: absolute;bottom: 1px;background: #000;color: #fff;width:auto;padding:4px 10px;}
+</style>
+<div class="box"></div>
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+var picUrl=['1.bat ','46465.jpg ','arms.jpg ','bg_content.jpg ','bg_top.jpg ','close.png ','css_sprites.png ','ico1.jpg ','ico1.png ','ico2.png ','ico3.png ','ico4.png ','ico5.png ','list_bg.jpg ','logo.png ','nav_btn_bg.png ','sunbmit_btn.png ','u41.png ','']
+var picImg = "";
+for(var i = 0; i < picUrl.length ; i ++ ){
+	picImg += '<div class="size"><p></p><span></span><img src="images/'+picUrl[i]+'" /></div>'
+}
+$(".box").append(picImg);
+})
+</script>
+<script type="text/javascript">
+$(function(){
+	var _w = parseInt($(window).width());//获取浏览器的宽度
+	$("img").each(function(i){
+		var img = $(this);
+		var imgsrc = $(this).attr("src").replace("images/",'')
+		console.log(imgsrc);
+		img.siblings("span").text(""+imgsrc+"")
+		var realWidth;//真实的宽度
+		var realHeight;//真实的高度
+	   //这里做下说明，$("<img/>")这里是创建一个临时的img标签，类似js创建一个new Image()对象！
+	   $("<img/>").attr("src", $(img).attr("src")).load(function() {
+			/*如果要获取图片的真实的宽度和高度有三点必须注意
+			  1、需要创建一个image对象：如这里的$("<img/>")
+			  2、指定图片的src路径
+			  3、一定要在图片加载完成后执行如.load()函数里执行
+			 */
+			realWidth = this.width;
+			realHeight = this.height;
+		       //如果真实的宽度大于浏览器的宽度就按照100%显示
+			$(img).css("width",realWidth+'px').css("height",realHeight+'px');
+			$(img).siblings('p').text(''+realWidth+'*'+realHeight+'');
+		    });
+	    });
+})
+</script>

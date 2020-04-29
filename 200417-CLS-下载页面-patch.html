@@ -1,0 +1,32 @@
+<script type="text/javascript">
+var _patch=[
+	{_date:'2020/04/16',
+	 _down:'http://cdnpatchcls.tiancity.cn/Closers_PATCH_2846_2865_20200416.exe',
+	 _size:'140.60',
+	 _md:'6903a09c94f4d674b64eca83b0789b69',
+	 _Rmks:'2.2846.0至2.2865.0'
+	},
+	{_date:'2020/04/02',
+	 _down:'http://cdnpatchcls.tiancity.cn/Closers_PATCH_2828_2845_20200402.exe',
+	 _size:'53.24',
+	 _md:'bead7c9e244aff1b0b02bc4b7550fcd0',
+	 _Rmks:'2.2828.0至2.2845.0'
+	},
+	{_date:'2018/01/02',
+	 _down:'http://cdnpatchcls.tiancity.cn/Closers_PATCH_1362_1363_20171229.exe',
+	 _size:'13.2',
+	 _md:'0900fa120574a423f2cce5c947e18bc8',
+	 _Rmks:'2.1362.0至2.1363.0'
+	}
+]
+$.each(_patch,function(i){
+	var mMission = '';
+	mMission += '<tr>\
+		<td>'+_patch[i]._date+'</td>\
+		<td><a href="'+_patch[i]._down+'">点击下载</a></td>\
+		<td>'+_patch[i]._size+'MB</td>\
+		<td>'+_patch[i]._md+'</td>\
+	<td>'+_patch[i]._Rmks+'</td></tr>';
+	$('.down_record table tbody').append(mMission);
+});
+</script>

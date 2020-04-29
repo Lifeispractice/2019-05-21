@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>200418-CLS更新-选项卡-简写-改版2</title>
+<link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+<script src="https://img1.tiancitycdn.com/project1/csol/common/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/cls/event/2019/1017Fashion/css/animation.css">
+ </head>
+ <body>
+<style type="text/css">
+.box1{padding-top: 0;}
+.box1 .btn{position: relative; top:0px; left:0px; width:1000px; margin:0 auto; overflow: hidden; padding-bottom:10px;background: #a64040; }
+.box1 .btn a{display: block; width:93px; height:196px; background:url(https://img1.tiancitycdn.com/cls/event/2020/0415Fashion/images/lh-btn.png) no-repeat; background-position-y:-1px;margin:0px 9px; float: left; position: relative; top:0px; z-index:1;}
+.box1 .btn a.on{top:10px;background-position-y:-204px !important;}
+.box1 .img{width: 1612px;height:1535px;position:relative;left:50%;margin-left:-806px;margin-top: -190px;}
+.box1 .img img{display: none;}
+
+.box2{position:relative;top:-370px;}
+.box2 .btn{position: relative; top: 0px; left: 50%; margin-left: -176px; z-index: 2; background: #a64040; overflow: hidden; width: 370px;}
+.box2 .btn a{display: block;width:85px;height:90px;background:url(https://img1.tiancitycdn.com/cls/event/2019/1017Fashion/images/m-btn.png);background-position-y:0px;float: left;margin-right: 38px;}
+.box2 .btn a.on{background-position-y:-95px !important;}
+.box2 .img{width:1051px;height:409px;position:relative;top: 0px;left:50%;margin-left:-525px;background: #a64040;}
+.box2 .img img{display: none;}
+</style>
+<div class="box box1"></div>
+<div class="box box2"></div>
+<script type="text/javascript">
+$(function(){
+	tabbox();
+	//第一个列表隐藏
+	$(".box1 .btn a").eq(0).remove()
+	$(".box1 .img img").eq(0).remove()
+})
+function tabbox(){
+	var positionX = -109;
+	var positionX2 = -130;
+	var animationClass = "a-fadeinB";
+	var animationClass2 = "a-fadein";
+	var imgUrl = "https://img1.tiancitycdn.com/cls/event/2019/1017Fashion/images/lh-pic";
+//	var imgUrl = "images/lh-pic";
+	var imgUrl2 = "https://img1.tiancitycdn.com/cls/event/2020/0415Fashion/images/m-pic";
+//	var imgUrl2 = "images/m-pic";
+
+	var btnArr= '', imgArr= '';
+	var btnArr2= '', imgArr2= '';
+	for(var i = 0; i < 10 ; i ++ ){ forHtlml()}
+	for(var i = 1; i < 4 ; i ++ ){ forHtlml2()}
+	$(".box1").append('<div class="btn">'+btnArr+'</div><div class="img">'+imgArr+'</div>')
+	$(".box2").append('<div class="btn">'+btnArr2+'</div><div class="img">'+imgArr2+'</div>')
+
+	var navBtn = $(".box .btn a")
+	var img = $(".box .img img")
+
+	$(".box1").find("a").eq(1).addClass("on").parent().siblings(".img").find('img').eq(1).show();
+	$(".box2").find("a").eq(0).addClass("on").parent().siblings(".img").find('img').eq(0).show();
+
+	$(".box1 a").each(function(i){
+		$(".box1 a").eq(i).css( "background-position-x" , i*positionX );
+		$(this).hover(function(){
+			$(".box1 img").stop(true).eq(i).show(0).addClass(animationClass).siblings().hide(0).removeClass(animationClass);
+		})
+	})
+	$(".box2 a").each(function(i){
+		$(".box2 a").eq(i).css( "background-position-x" , i*positionX2 );
+		$(this).hover(function(){
+			$(".box2 img").stop(true).eq(i).show(0).addClass(animationClass2).siblings().hide(0).removeClass(animationClass2);
+		})
+	})
+
+	navBtn.each(function(i){
+		$(this).hover(function(){
+			navBtn.stop(true).eq(i).addClass('on').siblings().removeClass('on');
+		})
+	})
+	function forHtlml(){
+		btnArr += '<a href="javascript:;" class="top'+i+'"></a>'
+		imgArr += '<img src="'+imgUrl+''+i+'.png" />'
+	}
+	function forHtlml2(){
+		btnArr2 += '<a href="javascript:;" class="top'+i+'"></a>'
+		imgArr2 += '<img src="'+imgUrl2+''+i+'.png" />'
+	}
+}
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>20200423-网页渐变集合</title>
+  <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+  <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <body>
+ <style type="text/css">
+ div{width:100%;padding:150px 0;text-align:center;font-size:20px;}
+.box1{background-image: linear-gradient(to right, #ff9569 0%, #e92758 100%);}
+.box2{background-image: linear-gradient(-90deg, #29bdd9 0%, #276ace 100%);}
+.box3{background: linear-gradient(91deg,#f1eefc,#9dc6ff 70%,#a5bcff);}
+.box4{background: linear-gradient(135deg,#56c8ff,#6f99fc) no-repeat;}
+.box5{background-color:white;background-image:radial-gradient(midnightblue 9px, transparent 10px),repeating-radial-gradient(midnightblue 0, midnightblue 4px, transparent 5px, transparent 20px, midnightblue 21px, midnightblue 25px, transparent 26px, transparent 50px);background-size: 30px 30px, 90px 90px;background-position: 0 0;}
+.box6{background-color: hsl(2, 57%, 40%);background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px,transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px,rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px,rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px,rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px,transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px,rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px,rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px,rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px,transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);}
+.box7{background-color: silver;background-image: linear-gradient(335deg, #b00 23px, transparent 23px),linear-gradient(155deg, #d00 23px, transparent 23px),linear-gradient(335deg, #b00 23px, transparent 23px),linear-gradient(155deg, #d00 23px, transparent 23px);background-size: 58px 58px;background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;}
+.box8{background:
+	radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187,0,51,0) 27%),
+	radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187,0,51,0) 27%),
+	radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221,51,85,0) 46%),
+	radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221,51,85,0) 46%),
+	radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221,51,85,0) 31%),
+	radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187,0,51,0) 27%) 50px 50px,
+	radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187,0,51,0) 27%) 50px 50px,
+	radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221,51,85,0) 46%) 50px 50px,
+	radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221,51,85,0) 46%) 50px 50px,
+	radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221,51,85,0) 31%) 50px 50px;
+	background-color:#b03;
+	background-size:100px 100px;
+}
+.box9{background-color:black;
+	background-image:
+	radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+	radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+	radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+	radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+	background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+	background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;}
+.box10{background:
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.15) 30%, rgba(255,255,255,.3) 32%, rgba(255,255,255,0) 33%) 0 0,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.1) 11%, rgba(255,255,255,.3) 13%, rgba(255,255,255,0) 14%) 0 0,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 17%, rgba(255,255,255,.43) 19%, rgba(255,255,255,0) 20%) 0 110px,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 11%, rgba(255,255,255,.4) 13%, rgba(255,255,255,0) 14%) -130px -170px,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.2) 11%, rgba(255,255,255,.4) 13%, rgba(255,255,255,0) 14%) 130px 370px,
+	radial-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.1) 11%, rgba(255,255,255,.2) 13%, rgba(255,255,255,0) 14%) 0 0,
+	linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
+	background-size: 470px 470px, 970px 970px, 410px 410px, 610px 610px, 530px 530px, 730px 730px, 100% 100%;
+	background-color: #840b2a;}
+.box11{
+	background: linear-gradient(to right,olive, green);
+	position: relative;z-index: 0; }.box::before {content:'';position: absolute;left: 0; top: 0; right: 0; bottom: 0;background:
+	linear-gradient(to right, green, purple);opacity: 0; transition: opacity.5s;z-index: -1;}
+	 }
+.box12{
+	background: linear-gradient(to right,olive, green);
+	position: relative;z-index: 0; }.box::before {content:'';position: absolute;left: 0; top: 0; right: 0; bottom: 0;background:
+	linear-gradient(to right, green, purple);opacity: 0; transition: opacity.5s;z-index: -1;}
+	 }
+.box13{
+	   -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-image: linear-gradient(to right,#fb929e,#b4b4ff, #aedefc);
+}
+ </style>
+<div class="box1">background-image: linear-gradient(to right, #ff9569 0%, #e92758 100%);</div>
+<div class="box2">background-image: linear-gradient(-90deg, #29bdd9 0%, #276ace 100%);</div>
+<div class="box3">background: linear-gradient(91deg,#f1eefc,#9dc6ff 70%,#a5bcff);</div>
+<div class="box4">background: linear-gradient(135deg,#56c8ff,#6f99fc) no-repeat;</div>
+<div class="box5"></div>
+<div class="box6"></div>
+<div class="box7"></div>
+<div class="box8"></div>
+<div class="box9"></div>
+<div class="box10"></div>
+<div class="box11"><p>
+	background: linear-gradient(to right,olive, green);
+	position: relative;z-index: 0; }.box::before {content:'';position: absolute;left: 0; top: 0; right: 0; bottom: 0;background:
+	linear-gradient(to right, green, purple);opacity: 0; transition: opacity.5s;z-index: -1;}
+</p>
+</div>
+<div class="box12"></div>
+<div class="box13"></div>
+<div class="box14"></div>
+<div class="box15"></div>
+<div class="box16"></div>
+<div class="box17"></div>
+<div class="box18"></div>
+<div class="box19"></div>
+<div class="box20"></div>
+<div class="box21"></div>
+<div class="box22"></div>
+<div class="box23"></div>
+<div class="box24"></div>
+<div class="box25"></div>
+<div class="box26"></div>
+<div class="box27"></div>
+<div class="box28"></div>
+<div class="box29"></div>
+<div class="box30"></div>
+<div class="box31"></div>
+<div class="box32"></div>
+<div class="box33"></div>
+<div class="box34"></div>
+<div class="box35"></div>
+<div class="box36"></div>
+<div class="box37"></div>
+<div class="box38"></div>
+<div class="box39"></div>
+<div class="box40"></div>
+<div class="box41"></div>
+<div class="box42"></div>
+<div class="box43"></div>
+<div class="box44"></div>
+<div class="box45"></div>
+<div class="box46"></div>
+<div class="box47"></div>
+<div class="box48"></div>
+<div class="box49"></div>
+<div class="box50"></div>
+<div class="box51"></div>
+<div class="box52"></div>
+<div class="box53"></div>
+<div class="box54"></div>
+<div class="box55"></div>
+<div class="box56"></div>
+<div class="box57"></div>
+<div class="box58"></div>
+<div class="box59"></div>
+<div class="box60"></div>
+<div class="box61"></div>
+<div class="box62"></div>
+<div class="box63"></div>
+<div class="box64"></div>
+<div class="box65"></div>
+<div class="box66"></div>
+<div class="box67"></div>
+<div class="box68"></div>
+<div class="box69"></div>
+<div class="box70"></div>
+<div class="box71"></div>
+<div class="box72"></div>
+<div class="box73"></div>
+<div class="box74"></div>
+<div class="box75"></div>
+<div class="box76"></div>
+<div class="box77"></div>
+<div class="box78"></div>
+<div class="box79"></div>
+<div class="box80"></div>
+<div class="box81"></div>
+<div class="box82"></div>
+<div class="box83"></div>
+<div class="box84"></div>
+<div class="box85"></div>
+<div class="box86"></div>
+<div class="box87"></div>
+<div class="box88"></div>
+<div class="box89"></div>
+<div class="box90"></div>
+<div class="box91"></div>
+<div class="box92"></div>
+<div class="box93"></div>
+<div class="box94"></div>
+<div class="box95"></div>
+<div class="box96"></div>
+<div class="box97"></div>
+<div class="box98"></div>
+<div class="box99"></div>
+<div class="box100"></div>
+ </body>
+</html>
+<!--
+
+
+原文：几种css炫酷背景欣赏：https://blog.csdn.net/zhongguohaoshaonian/article/details/78393563?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2
+
+
+
+
+-->

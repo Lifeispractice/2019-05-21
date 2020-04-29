@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>20200420-todolist-demo-改版3</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<style>
+*{margin:0;padding:0;}
+body{background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);}
+#todoapp {width: 600px;margin: 0 auto 100px;}
+#todoapp  header.header {width: 100%;margin: 0 auto;}
+#todoapp  header.header h1 {text-align: center;height: 166px;line-height: 166px;font-size: 50px;font-family: none;font-weight: 900;color: #1f1f1f;}
+#todoapp  header.header h2 {text-align: center;font-weight: 100;color: #1f1f1f;font-family: youyuan;font-size: 40px;padding: 30px 0 0;}
+#todoapp  section.main {width: 100%;}
+#todoapp .new-todo{height: 80px;line-height: 80px;font-size: 20px;border: 2px solid #f0f1ef;box-shadow: 0px 0px 4px 5px #e6dede;margin: 0 0 30px;width: 89%;padding-left: 10%;}
+
+ul{width:100%;}
+ul li{width: 100%;margin-bottom: 10px;list-style: none;font-size: 16px;height: 60px;line-height: 70px;margin: 0 auto;box-shadow: 0px -1px 20px 0px black;overflow: hidden;}
+ul li .destroy{float: right;border: navajowhite;cursor: pointer;outline: none;position: relative;top: 12px;right: 28px;background: none;}
+ul li .destroy i {border: none;background: none;font-size: 34px;}
+ul li .destroy:hover {transform: scale(1.1);transition-duration: .5s;}
+
+#todoapp .item_text {font-size: 22px;padding-left: 30px;width: 360px;display: inline-block;overflow: hidden;font-family: monospace;font-weight: 900;height: 60px;line-height: 60px;}
+#todoapp footer.footer {width: 90%;height: 40px;line-height: 40px;box-shadow: 0px 11px 16px 0px #969292;padding-left: 10%;}
+#todoapp span.todo-count {font-size: 16px;}
+#todoapp button.clear-complated {padding: 2px 16px;font-weight: 900;font-size: 14px;float: right;margin: 6px 15px 0 0px;}
+#todoapp span.index {font-size: 15px;position: relative;width: 40px;height: 60px;line-height: 60px;display: inline-block;text-align: center;float: left;}
+#todoapp span.index i{position: absolute;left: 10px;top: 26px;}
+#todoapp .view {height: 100%;width: 83%;margin: 0 auto;}
+#todoapp .fa-calendar-o:before {content: "\f133";position: absolute;top: -15px;left: -4px;}
+
+.checkbox_btn {width: 24px;height: 60px;line-height: 60px;display: block;float: left;}
+.todo{background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);}
+.todo_2{background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898; background-blend-mode: multiply,multiply;}
+</style>
+<!-- 主体区域 -->
+<section id="todoapp">
+      <header class="header">
+            <h1>todos</h1>
+            <input class="new-todo" id="new-todo" v-model="msg" @keyup.enter="add" type="text" ref="input" autofocus="autofocus" autocomplete="off" placeholder="亲，请输入您的任务" title="回车添加任务">
+<!-- 	    <input id="materialSearch" type="text" @keyup.enter="search" @input="search($event)"/> -->
+      </header>
+      <!-- 列表区域 -->
+      <section class="main">
+            <ul class="todo-list">
+                  <li class="todo" v-for="(item,index) in list" v-if="!item.checked">
+                        <div class="view" @change="saveList()">
+				<input class="checkbox_btn" type="checkbox" v-model="item.checked" @change="saveList()" />
+                              <span class="index"><b>{{ index+1 }}</b><i class="fa fa-calendar-o fa-2x"></i></span>
+                              <label class="item_text">{{ item.title }}</label>
+                              <button @click="remove(index)" class="destroy" title="点击删除"><i @mouseenter="enter($event)" @mouseleave="leave($event)" class="fa fa-check-circle-o fa-3x"></i></button>
+                        </div>
+                  </li>
+            </ul>
+      </section>
+      <!-- 统计和清空 父级添加则父级元素也被隐藏-->
+      <footer class="footer" v-show="list.length!=0">
+            <span class="todo-count" v-if="list.length!=0"><strong>{{ list.length+" items left" }}</strong></span>
+            <button class="clear-complated" v-show="list.length!=0" @click="clear" title="确认删除全部">clear</button>
+      </footer>
+	<header class="header"><h2>已完成</h2></header>
+	 <section class="main">
+	  <ul class="todo-list">
+                <li class="todo todo_2" v-for="(item,key) in list" v-if="item.checked">
+			 <div class="view"@change="saveList()">
+				<input class="checkbox_btn" type="checkbox" v-model="item.checked" />
+				 <label class="item_text">{{ item.title }}</label>
+                              <button @click="remove(index)" class="destroy" title="点击删除"><i @mouseenter="enter($event)" @mouseleave="leave($event)" class="fa fa-check-circle-o fa-3x"></i></button>
+			</div>
+		</li>
+      		</ul>
+	 </div>
+</section>
+<script>
+alert(`
+页面功能如下
+(1)判断输入为空则提示未填写任务
+(2)填写任务 回车添加任务
+(3)已完成任务点击复选框，任务添加至已完成
+(4)已完成任务点击返回至任务列表
+(5)渐变库color.oulu.me（页面渐变）
+(6)font-awesome 网页字体图标库（列表删除按钮）
+(5)数据存储
+`);
+
+var app = new Vue({
+      el: "#todoapp",
+      data: {
+            result1: null,
+            // 定义一个数组
+            list: ["写代码", "吃饭", "睡觉"],
+            msg: ""
+      },
+      methods: {
+            // 新增
+            add: function () {
+                  this.result1 = this.$refs.input.value
+                  if (this.result1 == null || this.result1 == undefined || this.result1 == "") {
+                        alert('亲,您没有填写任务哦！');
+                  } else {
+                        //alert('不为空');
+                        this.list.push({
+                              title: this.msg
+                        });
+                  }
+                  this.msg = "";
+                  //存储数据
+                  localStorage.setItem('list', JSON.stringify(this.list))
+            },
+            // 删除
+            remove: function (index) {
+                  //alert('删除');
+                  //alert(index);
+                  this.list.splice(index, 1);
+                  localStorage.setItem('list', JSON.stringify(this.list))
+            },
+            // 清空
+            clear: function () {
+		if( confirm("确认删除全部") == true ){
+			this.list = [];
+		}else{
+			return;
+		}
+            },
+            enter: function ($event) {
+                  $event.currentTarget.className = "fa fa-check-circle fa-3x"
+            },
+            leave: function ($event) {
+                  $event.currentTarget.className = "fa fa-check-circle-o fa-3x"
+            },
+            saveList() {
+                  localStorage.setItem('list', JSON.stringify(this.list))
+            }
+      },
+      mounted() {
+            //json字符串转成json对象
+            var list = JSON.parse(localStorage.getItem('list'))
+            //判断list是否存在
+            if (list) {
+                  //存在则将获取到的list保存刷新后的list中
+                  this.list = list;
+            }
+      }
+})
+</script>
+</body>
+</html>
+
+
+

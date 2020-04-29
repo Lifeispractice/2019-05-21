@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>200417-CSO-选项卡-超首-es6简写-css-js简写</title>
+  <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+  <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <body>
+ <style type="text/css">
+.box {width:1100px;height: 587px;position:relative;overflow: hidden;}
+.box ul {bottom:50px;position: absolute;z-index: 1;left: 40px;}
+.box ul li {width:95px;height:110px;margin-right:20px;float:left;cursor:pointer;position: relative;}
+.box ul li.active span {display: block;width: 92px;height: 92px;background: #fff;border: 3px solid #ecb60b;border-radius: 50%;position: absolute;top: 12px;z-index: -1;left: -2px;}
+.box ul li i {width:94px;height:112px;margin-right:20px;float:left;background: url(https://img1.tiancitycdn.com/project1/csol/event/2018/03/cs180314event/images22/popli-bg2.png) no-repeat 0px 13px;cursor:pointer;}
+.box .con_page {width:100%;height:100%;position:absolute;top: 40px;left: 40px;display:none;}
+.box .con_page img {float: left;position: relative;top: -320px;}
+.box .con_page p {color:#fff;font-size: 18px;font-weight: 100;position: relative;z-index: 1;}
+.box .con_page .p1 {font-size:38px;font-weight:bold;color:#ffda94;margin: 0 0 15px;}
+.box .con_page .p2 {width:540px;}
+.box .con_page .p3 {width: 103px;height:35px;text-indent:10px;line-height: 35px;font-weight:bold;color:#000;background: #ffda94;margin: 15px 0;}
+.box .con_page .p3 i {display:block;width: 0;height: 0;border-top: 18px solid transparent;border-bottom: 17px solid transparent;border-left: 20px solid #ffda94;float: right;margin-right: -20px;}
+.box .con_page .p4 {clear: both;}
+</style>
+<div class="box"></div>
+<script type="text/javascript">
+$(function(){
+	var arr="",
+	arr2="";
+	for(var i = 1; i < 10; i ++){
+		arr += `<li class="li${i}"><i></i><span></span></li>`
+		arr2 += `<div class="con_page"></div>`
+	}
+	$('.box').html(`
+		<ul>${arr}</ul>
+		<div class="page">${arr2}</div>
+	`)
+	var box_Li = $('.box ul li');
+	var box_Li_css = -113;
+	var box_Page = $(".box .con_page");
+	box_Li.eq(0).addClass('active');
+	box_Page.eq(0).show();
+	box_Li.each(function(i){
+		box_Li.eq(i).find("i").css({"background-position-x" :  i*box_Li_css });
+		box_Li.eq(i).find("i").css({"background-position-y" :  "16px" });
+		$(this).hover(function(){
+			box_Li.eq(i).addClass("active").find("i").css({"background-position-y" :  "-102px" }).parent().siblings().removeClass("active").find("i").css({"background-position-y" :  "14px" });;
+			$(".box .con_page").eq(i).show().siblings().hide();
+		})
+	});
+	var list_Content = [
+		[	'追猎傀儡',
+			'喜好独自追猎的女杀手，任务中遭遇爆炸身亡，面目全非并失去了双腿后通过R博士的实验复活成为僵尸。高速移动时可累计能量，瞬间爆发强悍的跳跃能力。',
+			'专属技能 ',
+			'[迅猛飞跃] 释放累积的能量，爆发强悍力量向前飞跃'
+		],[
+			'爆弹狂魔 ',
+			'R博士研究所中的生化兵器研究员，实验中发生爆炸事故，遭受感染并复活成为僵尸。自身与爆弹兽颅完全融合，只需取出身体的一部分，即可作为爆弹兽颅使用。',
+			'专属技能 ',
+			'[分裂兽颅] 消耗体力制造爆弹兽颅，可丢弃后供本方僵尸使用'
+		],[
+			'次级僵尸',
+			'基础僵尸，移动速度和防御力等属性相当均衡。',
+			'专属技能',
+			'[暴走] 短时间内提高移动速度和抗击退效果。 '
+		],[
+			'母体僵尸 ',
+			'基础僵尸，移动速度和防御力等属性相当均衡。 ',
+			'专属技能 ',
+			'[暴走] 短时间内提高移动速度和抗击退效果。 '
+		],[
+			'暗影芭比 ',
+			'不要被她纤弱的外表迷惑，在阴森的嬉笑声中变种僵尸女魔王暗影芭比令人毛骨悚然，进化和变异使她具有更快的速度和更强的跳跃力，而最恐怖的是…拥有暗影力量的暗影芭比潜行在寂静的夜幕，又在你的身旁闪现… ',
+			'专属技能 ',
+			'[潜行] 隐藏自己的外形，使之不被发现。同时移动速度和防御力会降低 '
+		],[
+			'憎恶屠夫 ',
+			'球上最残忍的变异生化物种，对人类充满仇恨而不断贪婪地吞食着生命。在变异过程中体内尚未消耗的生命使其获得了操纵生命的神秘力量。在它的邪恶狂袭中幸存下来的人类皆如梦魇般不堪回忆，尤其是那只来自地狱的鬼手 ',
+			'专属技能 ',
+			'[鬼手] 将身体内部的鬼手安装到地上，可限制经过此处敌人的行动能力。 '
+		],[
+			'恶魔之子 ',
+			'在释放异形斗兽的过程中，其特殊基因发生了扩散传染，促使大量的生化物种变异。恶魔之子与异形斗兽有着相似的遗传基因，集合了迄今发现的所有已知僵尸的优势，具有强大的攻击性。 ',
+			'专属技能 ',
+			'[震荡] 可溅射震荡波，击落敌人武器。 '
+		],[
+			'嗜血女妖 ',
+			'从没有人类在目睹了嗜血女妖后还能存活，它只存在于世间的传闻。在中世纪，那些煽动异教徒的魔女在死亡之后，成为了僵尸再度复活。它们擅长使用可远程诱捕目标和引发视觉混乱的魔法系邪恶能力。 ',
+			'专属技能 ',
+			'[诱捕] 向远距离的敌人放出大量蝙蝠，并拖拽至身前。 '
+		],[
+			'赤炎恶鬼 ',
+			'曾经仅存在于坊间传闻的强大鬼怪，拥有千锤百炼的坚韧身躯，甚至能够空手格挡漫天的弹雨。此后胆敢攻击它的人类将不得不承受其愤怒的反击。 ',
+			'专属技能 ',
+			'[格挡]受到的伤害下降至10%，并在承受一定伤害后反击<br> [再生]恢复自己的部分生命值 '
+		]
+	]
+	function tab_Content(){
+		$.each(list_Content,function(i,_mode){
+			var Content = `
+				<p class="p1">${_mode[0]}</p>
+				<p class="p2">${_mode[1]}</p>
+				<p class="p3"><i></i>${_mode[2]}</p>
+				<p class="p4">${_mode[3]}</p>
+				<img src="https://img1.tiancitycdn.com/project1/csol/event/2018/03/cs180314event/images22/op${i+1}.png">
+			`
+			$(".box .con_page").eq(i).append(Content);
+		})
+	}
+	tab_Content();
+})
+</script>
+</body>
+</html>

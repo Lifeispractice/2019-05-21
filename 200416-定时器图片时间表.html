@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>200416-定时器图片时间表</title>
+  <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <body>
+ <style type="text/css">
+img{display:inline-block;width:80px;height: 80px;}
+ </style>
+<img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" class="num"><img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" class="num"><img src="https://s1.ax1x.com/2020/04/16/JATpM4.png">
+<img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" class="num"><img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" class="num"><img src="https://s1.ax1x.com/2020/04/16/JATpM4.png">
+<img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" class="num"><img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" class="num">
+
+<!-- <img src="https://s1.ax1x.com/2020/04/16/JAoLaq.png" alt="0" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAo7rj.png" alt="1" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAoqZn.png" alt="2" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAoHqs.png" alt="3" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAoTMQ.png" alt="4" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAoOI0.png" alt="5" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAojiV.png" alt="6" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAovGT.png" alt="7" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAoxRU.png" alt="8" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JAozzF.png" alt="9" border="0">
+<img src="https://s1.ax1x.com/2020/04/16/JATpM4.png" alt="mh" border="0"> -->
+<script type="text/javascript">
+function toDou(n) {
+      if (n<10) {
+            return '0'+n;
+      }else{
+            return ''+n;
+      }
+}
+window.onload = function(){
+	var aImg = document.getElementsByClassName('num');
+      var imgUrl = [
+            "JAoLaq",
+            "JAo7rj",
+            "JAoqZn",
+            "JAoHqs",
+            "JAoTMQ",
+            "JAoOI0",
+            "JAojiV",
+            "JAovGT",
+            "JAoxRU",
+            "JAozzF",
+            // "https://s1.ax1x.com/2020/04/16/JATpM4.png"
+      ]
+      function tick() {
+            var oDate = new Date;
+            var str = toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
+            // 22 22
+            // alert(str);
+            for (let i = 0; i < aImg.length; i++) {
+                  aImg[i].src = 'https://s1.ax1x.com/2020/04/16/'+imgUrl[str[i]]+'.png';
+            }
+      }
+      setInterval(tick,1000);
+      tick();
+}
+</script>
+</body>
+</html>
