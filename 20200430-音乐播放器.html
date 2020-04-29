@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>音乐播放器</title>
+  <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+  <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+ </head>
+ <body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+* {padding: 0;margin: 0;}
+body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%); background-blend-mode: normal,color-burn;}
+.wrap {height: 590px;width: 880px;margin: 70px auto;background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);}
+.wrap.hidden{overflow:hidden;}
+.wrap .search_bar {height: 70px;background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);}
+.wrap .search_bar h1 {font-size: 30px;padding: 14px 30px 20px 20px;font-weight: 900;font-family: youyuan;float: left;}
+.wrap .play_wrap input {width: 306px;height: 34px;line-height: 34px;padding: 0 10px;border-radius: 20px;border: none;float: right;margin: 20px 20px;background-color: #83d1ec;outline: none;font-size: 14px;color: #000;font-weight: 900;padding-left: 30px;}
+.wrap .play_wrap input {background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%); background-blend-mode: normal,color-burn;}
+.wrap .center_con {clear: both;width: 100%;margin: 0 auto;padding: 10px 20px;overflow: hidden;height: 500px;}
+.wrap .center_con .song_wrapper {width: 240px;float: left;height: 490px;border-radius: 20px;padding: 0px 10px;margin-bottom: 10px;}
+.wrap .center_con .song_wrapper {background-image: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);}
+.wrap .center_con .song_wrapper .song_list {overflow-y: scroll;height: 414px;width: 220px;margin: 0 auto;}
+.wrap .center_con .song_wrapper .song_list li {padding: 5px 0px;overflow: hidden;height: 20px;box-shadow: -14px 1px 0px 0px #9E9E9E;line-height: 20px;}
+.wrap .center_con .song_wrapper .song_list li b {font-size: 15px;height: 18px;display: block;margin-left: 7px;line-height: 18px;width: 130px;float: left;overflow: hidden;}
+.wrap .center_con .song_wrapper .song_list li b.active {color: #f00;}
+.wrap .center_con .song_wrapper .song_list li a {display: block;float: left;width: 18px;height: 17px;}
+.wrap .center_con .song_wrapper .song_list li a:hover {}
+.wrap .center_con .song_wrapper .song_list li a.playbtn {background-position: -20px -128px;color: #f00;}
+.wrap .center_con .song_wrapper .song_list li span {width: 23px;height: 17px;float: right;display: block;margin-right: 25px;cursor: pointer;}
+.wrap .center_con .song_wrapper .song_list li i{font-size: 20px;color:#000;}
+.wrap .center_con .player_con {width: 299px;height: 430px;position: relative;float: left;padding: 0 10px;}
+/* 歌曲封面 */
+.wrap .center_con .player_con h2,
+.song_wrapper .title{font-family: youyuan;padding: 10px 0;text-align: center;height: 30px;font-weight: 900;padding: 21px 0;text-align: center;font-family: youyuan;font-size: 20px;}
+.song_wrapper .title{padding-bottom: 10px;}
+.wrap .center_con .player_con .play_bar {position: absolute;right: 30px;z-index: 1;}
+.wrap .center_con .player_con .autoRotate {position: relative;left: 10px;top: 40px;width: 280px;}
+.wrap .center_con .player_con .cover {position: absolute;top: 183px;left: 91px;width: 130px;height: 130px;border-radius: 50%;border: 4px solid #555;}
+/*封面旋转rotate*/
+.wrap .center_con .player_con .autoRotate {-webkit-animation: 5000ms linear infinite rotate;-ms-animation: 5000ms linear infinite rotate;animation: 5000ms linear infinite rotate;}
+@keyframes rotate {0% {transform: rotate(0deg);}
+100% {transform: rotate(360deg);}}
+@-moz-keyframes rotate {0% {-moz-transform: rotate(0deg);}
+100% {-moz-transform: rotate(360deg);}}
+@-webkit-keyframes rotate {0% {-webkit-transform: rotate(0deg);}
+100% {-webkit-transform: rotate(360deg);}}
+@-ms-keyframes rotate {0% {-ms-transform: rotate(0deg);}
+100% {-ms-transform: rotate(360deg);}}
+@-o-keyframes rotate {0% {-o-transform: rotate(0deg);}
+100% {-o-transform: rotate(360deg);}}
+/*封面动画暂停*/
+.wrap .center_con .player_con .playing2 {animation-play-state: paused;-webkit-animation-play-state: paused;}
+/*指针动画默认*/
+.play_bar {-webkit-transition: all .3s ease-out;-ms-transition: all .3s ease-out;transition: all .3s ease-out;}
+.play_bar {-webkit-transform: rotate(-30deg);-ms-transform: rotate(-30deg);transform: rotate(-30deg);-webkit-transform-origin: 63px 35px;-ms-transform-origin: 63px 35px;transform-origin: 63px 35px;}
+/*指针动画播放*/
+.wrap .center_con .player_con .playing3 {-webkit-transform: rotate(4deg);-ms-transform: rotate(4deg);transform: rotate(4deg);}
+/* 渐变边框 */
+.wrap .center_con .player_con {}
+/* 滚动条样式1 */
+.song_list::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);border-radius: 10px;background-color: #F5F5F5;}
+.song_list::-webkit-scrollbar {width: 12px;background-color: #F5F5F5;border-radius: 10px;}
+.song_list::-webkit-scrollbar-thumb {border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);background-color: #555;}
+/* 滚动条样式2 */
+.comment_list::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);border-radius: 10px;background-color: #F5F5F5;}
+.comment_list::-webkit-scrollbar {width: 12px;background-color: #F5F5F5;border-radius: 10px;}
+.comment_list::-webkit-scrollbar-thumb {border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);background-color: #555;}
+/* 音乐 */
+.wrap .audio_con {padding: 10px 0;width: 96%;margin: 0 auto;clear: left;}
+.wrap .audio_con audio {height: 40px;background: #fff;width: 100%;outline: none;border: none;box-shadow: 4px 5px 12px 0px black;border-radius: 20px;}
+/* 热门留言 */
+.wrap .comment_wrapper {width: 254px;height: 478px;float: left;padding: 6px;border-radius: 20px;background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);background-blend-mode: screen;}
+.wrap .comment_wrapper .comment_list {overflow-y: scroll;height: 412px;width: 240px;margin: 0 auto;}
+.wrap .comment_wrapper .title {padding: 14px 0;text-align: center;font-family: youyuan;font-size: 20px;font-weight: 900;}
+.wrap .comment_wrapper dl {width: 100%;padding: 10px 0;}
+.wrap .comment_wrapper dl dt {width: 45px;float: left;}
+.wrap .comment_wrapper dl dt img {width: 40px;border-radius: 50%;}
+.wrap .comment_wrapper dl dd.name {width: 170px;float: left;padding: 8px 0;overflow: hidden;}
+.wrap .comment_wrapper dl dd.detail {clear: left;font-size: 12px;text-indent: 22px;padding-left: 40px;padding-right: 10px;}
+/*视频*/
+.video_con {width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
+.video_con video {position: absolute;top: 0;left: 0;right: 0;bottom: 0;width: 745px;height: 418px;z-index: 1;margin: auto;}
+.video_con .mask {width: 100%;height: 100%;position: absolute;top: 0;left: 0;opacity: 0.9;background-image: linear-gradient(to top, #65bd60 0%, #5ac1a8 25%, #3ec6ed 50%, #b7ddb7 75%, #fef381 100%);}
+</style>
+<div class="wrap" id="player">
+      <!-- 播放器主题区域 -->
+      <div class="play_wrap">
+            <div class="search_bar">
+                  <h1>音乐播放器</h1>
+                  <!-- 搜索歌曲 -->
+                  <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic" placeholder="请输入歌曲名或者歌手名">
+            </div>
+            <div class="center_con">
+                  <!-- 搜索歌曲列表 -->
+                  <div class="song_wrapper">
+			<h5 class="title">歌曲列表</h5>
+                        <ul class="song_list">
+                        <li v-for="(item,index) in musicList">
+                              <a href="javascript:;" @click="playMusic(item.id)" v-on:click="addClass(index,$event)" v-bind:class="{ playbtn:index==current}">
+					<i  v-on:click="addClass(index,$event)" v-bind:class="{'fa-pause':index==current}"  class="fa fa-x fa-play-circle-o"></i>
+			      </a>
+                              <b v-on:click="addClass(index,$event)" v-bind:class="{active:index==current}">{{ item.name }}</b>
+                              <span v-if="item.mvid!=0" @click="playMV(item.mvid)">
+					<i  class="fa fa-youtube-play fa-x"></i>
+			      </span>
+                        </li>
+                        </ul>
+                  </div>
+                  <!-- 歌曲信息容器 -->
+                  <div class="player_con">
+                        <h2>{{ musicName }}</h2>
+                        <img :class="{playing3:isPlaying}" src="https://img1.tiancitycdn.com/mh/event/music/images/bg_audio_samllcd.png" width="100" class="play_bar">
+                        <!-- 黑胶碟片 -->
+                        <img :class="[{playing:isPlaying},{playing2:!isPlaying}]" class="disc autoRotate" src="https://img1.tiancitycdn.com/mh/event/music/images/bg_audio_cd.png">
+                        <img :class="[{playing:isPlaying},{playing2:!isPlaying}]" :src="musicCover" alt="" class="cover autoRotate">
+                  </div>
+                  <!-- 评论容器 -->
+                  <div class="comment_wrapper">
+                        <h5 class="title">热门留言</h5>
+                        <div class="comment_list">
+                        <dl v-for="item in hotComments">
+                              <dt><img :src="item.user.avatarUrl" alt=""></dt>
+                              <dd class="name">{{item.user.nickname}}</dd>
+                              <dd class="detail">{{item.content}}</dd>
+                        </dl>
+                        </div>
+                  </div>
+            </div>
+            <div class="audio_con">
+                  <audio ref="audio" @play="play" @pause="pause" :src="mucisUrl" controls autoplay loop class="myaudio"></audio>
+            </div>
+            <div class="video_con" v-if="isShow">
+                  <video :src="mvUrl" controls="controls" autoplay ></video>
+                  <div class="mask" @click="hide"></div>
+            </div>
+      </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+alert(`
+功能：
+（1）歌曲歌手回车搜索
+（2）点击播放音乐 播放MV 点击MV外侧区域关闭MV
+（3）axios http库请求歌曲数据
+（4）axios 获取 歌曲封面-歌曲评论-播放列表-
+`);
+/*
+      1、歌曲搜索接口：
+      请求地址：https://autumnfish.cn/search
+      请求方法：get
+      请求参数：keywords（查询的关键字）
+      响应内容：歌曲搜素结果
+*/
+/*
+      2、歌曲播放
+      歌曲url获取
+      请求地址：https://autumnfish.cn/song/url
+      请求方法：get
+      请求参数:id（歌曲id）
+      响应内容：歌曲的 url 地址
+*/
+/*
+      3、歌曲封面
+      歌曲详情获取
+      请求地址：https://autumnfish.cn/song/detail
+      请求方法：get
+      请求参数:ids（歌曲id）
+      响应内容：歌曲详情，包含封面信息
+*/
+/*
+      4、歌曲评论
+      热门评论获取
+      请求地址：https://autumnfish.cn/comment/hot?type=0
+      请求方法：get
+      请求参数：id （ 歌曲id，type 固定为 0 ）
+      响应内容：歌曲的热门评论
+*/
+/*
+      5、MV播放
+      MV地址获取
+      请求地址：https://autumnfish.cn/mv/url
+      请求方法：get
+      请求参数：id（mvid，为0说明没有mv）
+      响应内容：mv的地址
+*/
+var app = new Vue({
+      el: "#player",
+      data: {
+            // 查询关键字
+            query: "齐天",
+            // 歌曲数组
+            musicList: [],
+            // 歌曲地址
+            mucisUrl: "",
+            // 歌曲封面
+            musicCover: "",
+            // 歌曲封面
+            musicCover: "",
+            // 歌曲名称
+            musicName: "歌曲名称",
+            // 歌曲评论
+            hotComments: [],
+            // 动画播放状态
+            isPlaying: false,
+            // 正在播放中高亮
+            current: "",
+            // 遮罩层的显示状态
+            isShow: false,
+            // MV地址
+            mvUrl: ""
+      },
+	mounted:function(){
+	      this.searchMusic();
+      },
+      methods: {
+            // 歌曲搜索
+            searchMusic: function () {
+                  var that = this;
+                  axios.get("https://autumnfish.cn/search?keywords=" + this.query)
+                        .then(function (response) {
+                              // console.log(response);
+                              that.musicList = response.data.result.songs;
+                              console.log(response.data.result.songs)
+                        }, function (err) {})
+            },
+            // 歌曲播放
+            playMusic: function (musicId) {
+                  // console.log(musicId)
+                  var that = this;
+                  // 获取歌曲地址
+                  axios.get("https://autumnfish.cn/song/url?id=" + musicId)
+                        .then(function (response) {
+                              // console.log(response);
+                              // console.log(response.data.data[0].url);
+                              that.mucisUrl = response.data.data[0].url;
+                        }, function (err) {})
+                  //歌曲详情获取
+                  axios.get("https://autumnfish.cn/song/detail?ids=" + musicId)
+                        .then(function (response) {
+                              // console.log(response);
+                              // console.log(response.data.songs[0].al.picUrl);
+                              that.musicCover = response.data.songs[0].al.picUrl;
+                              that.musicName = response.data.songs[0].name;
+                        }, function (err) {})
+                  // 歌曲评论获取
+                  axios.get("https://autumnfish.cn/comment/hot?type=0&id=" + musicId)
+                        .then(function (response) {
+                              // console.log(response);
+                              // console.log(response.data.hotComments);
+                              that.hotComments = response.data.hotComments;
+                        }, function (err) {})
+            },
+            // 歌曲播放
+            play: function () {
+                  // console.log("play");
+                  this.isPlaying = true;
+            },
+            // 歌曲暂停
+            pause: function () {
+                  // console.log("pause");
+                  this.isPlaying = false;
+            },
+            // 正在播放中歌曲高亮
+            addClass: function (index, event) {
+                  this.current = index;
+                  //获取点击对象
+                  //var el = event.currentTarget;
+                  //alert("当前对象的内容："+el.innerHTML);
+            },
+            // 播放MV
+            playMV: function (mvid) {
+                  var that = this;
+                  axios.get("https://autumnfish.cn/mv/url?id=" + mvid)
+                        .then(function (response) {
+                              // console.log(response);
+                              // 获取播放地址
+                              console.log(response.data.data.url);
+                              that.isShow = true;
+                              that.mvUrl = response.data.data.url;
+			      document.querySelector('body').setAttribute('style', 'overflow: hidden;')
+                        }, function (err) {})
+            },
+            // 隐藏
+            hide:function(){
+                  this.isShow = false;
+            }
+      },
+})
+</script>
+<pre style="font-size: 20px;font-weight: 900;padding-top: 20px;width: 800px;margin: 0 auto;padding-bottom: 100px;">
+写法详细分析
+(1)歌曲搜索
+    分析；
+	  1、按下回车（v-on .enter）
+	  2、查询数据（axios 接口 v-model）
+	  3、渲染数据（v-for 数组 that）
+    重点内容：
+	  1、服务器返回的数据比较复杂时，获取的时候需要注意 层级 结构
+	  2、通过 审查元素 快速定位到需要操纵的元素
+(2)歌曲播放
+    分析：
+	  1、点击播放（v-on 自定义参数）
+	  2、歌曲地址获取（接口 歌曲id）
+	  3、歌曲地址设置（v-bind）
+    重点内容：
+	  歌曲id 依赖歌曲搜索 的结果，对于不用的数据也需要关注
+(3)歌曲封面
+    分析：
+	  1、点击播放（增加逻辑）
+	  2、歌曲封面获取（接口 歌曲id）
+	  3、歌曲封面设置（v-bind）
+    重点内容：
+	  1、在vue中通过 v-bind 操纵属性
+	  2、本地无法获取的数据，基本都会有对应的 接口
+（4）歌曲评论
+    分析:
+	  1、点击播放（增加逻辑）
+	  2、歌曲评论获取（接口 歌曲 id ）
+	  3、歌曲评论渲染（ v-for ）
+    重点内容：
+	  1、在vue中通过 v-for生成列表
+（5）播放动画
+    分析：
+	  1、监听音乐播放（v-on play）
+	  2、监听音乐暂停（v-on pause）
+	  3、操纵类名（v-bind 对象）
+（6）播放MV
+    分析：
+	  1、MV图标显示（ v-if ）
+	  2、MV地址获取（ 接口 MVid ）
+	  3、遮罩层（ v-show v-on ）
+	  4、MV地址设置（ v-bind ）
+综合应用分析：
+	  1、不同的接口需要的数据是 不同 的，文档的阅读需要 仔细
+	  2、页面结构复杂之后，通过 审查元素 的方法 快速定位 相关元素
+	  3、响应式的数据都需要定义在 data 中定义
+</pre>
+ </body>
+</html>
