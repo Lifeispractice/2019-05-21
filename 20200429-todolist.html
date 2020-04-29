@@ -67,19 +67,28 @@ ul li .destroy:hover {transform: scale(1.1);transition-duration: .5s;}
       </footer>
 	<header class="header"><h2>已完成</h2></header>
 	 <section class="main">
-	  <ul class="todo-list">
-                <li class="todo todo_2" v-for="(item,key) in list" v-if="item.checked">
+	  <ul class="todo-list">
+                <li class="todo todo_2" v-for="(item,key) in list" v-if="item.checked">
 			 <div class="view"@change="saveList()">
 				<input class="checkbox_btn" type="checkbox" v-model="item.checked" />
 				 <label class="item_text">{{ item.title }}</label>
                               <button @click="remove(index)" class="destroy" title="点击删除"><i @mouseenter="enter($event)" @mouseleave="leave($event)" class="fa fa-check-circle-o fa-3x"></i></button>
 			</div>
 		</li>
-      		</ul>
+      		</ul>
 	 </div>
 </section>
 <script>
-//alert('(1)页面缺少判断输入为空则提示未填写任务\n(2)数据存储\n(3)每个项目在alert中填写相关技术');
+alert(`
+页面功能如下
+(1)判断输入为空则提示未填写任务
+(2)填写任务 回车添加任务
+(3)已完成任务点击复选框，任务添加至已完成
+(4)已完成任务点击返回至任务列表
+(5)渐变库color.oulu.me（页面渐变）
+(6)font-awesome 网页字体图标库（列表删除按钮）
+(5)数据存储
+`);
 
 var app = new Vue({
       el: "#todoapp",
