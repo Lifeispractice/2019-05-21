@@ -8,19 +8,21 @@
   <meta name="Description" content="">
   <title>音乐播放器</title>
   <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
-  <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
  </head>
  <body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1739942_yrx4y517nx8.css" rel="stylesheet">
 <style>
 * {padding: 0;margin: 0;}
 body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%); background-blend-mode: normal,color-burn;}
 .wrap {height: 590px;width: 880px;margin: 70px auto;background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);}
 .wrap.hidden{overflow:hidden;}
-.wrap .search_bar {height: 70px;background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);}
+.wrap .search_bar {height: 70px;position: relative;background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);}
 .wrap .search_bar h1 {font-size: 30px;padding: 14px 30px 20px 20px;font-weight: 900;font-family: youyuan;float: left;}
+.wrap .search_bar .search_btn {display: block;width: 20px;height: 20px;position: absolute;top: 28px;right: 30px;color: #000;font-size: 20px;}
+.wrap .search_bar .search_btn i{font-size:20px;color:#000;}
 .wrap .play_wrap input {width: 306px;height: 34px;line-height: 34px;padding: 0 10px;border-radius: 20px;border: none;float: right;margin: 20px 20px;background-color: #83d1ec;outline: none;font-size: 14px;color: #000;font-weight: 900;padding-left: 30px;}
 .wrap .play_wrap input {background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%); background-blend-mode: normal,color-burn;}
 .wrap .center_con {clear: both;width: 100%;margin: 0 auto;padding: 10px 20px;overflow: hidden;height: 500px;}
@@ -30,7 +32,7 @@ body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100
 .wrap .center_con .song_wrapper .song_list li {padding: 5px 0px;overflow: hidden;height: 20px;box-shadow: -14px 1px 0px 0px #9E9E9E;line-height: 20px;}
 .wrap .center_con .song_wrapper .song_list li b {font-size: 15px;height: 18px;display: block;margin-left: 7px;line-height: 18px;width: 130px;float: left;overflow: hidden;}
 .wrap .center_con .song_wrapper .song_list li b.active {color: #f00;}
-.wrap .center_con .song_wrapper .song_list li a {display: block;float: left;width: 18px;height: 17px;}
+.wrap .center_con .song_wrapper .song_list li a {display: block;float: left;width: 18px;height: 18px;color:#000;}
 .wrap .center_con .song_wrapper .song_list li a:hover {}
 .wrap .center_con .song_wrapper .song_list li a.playbtn {background-position: -20px -128px;color: #f00;}
 .wrap .center_con .song_wrapper .song_list li span {width: 23px;height: 17px;float: right;display: block;margin-right: 25px;cursor: pointer;}
@@ -38,7 +40,7 @@ body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100
 .wrap .center_con .player_con {width: 299px;height: 430px;position: relative;float: left;padding: 0 10px;}
 /* 歌曲封面 */
 .wrap .center_con .player_con h2,
-.song_wrapper .title{font-family: youyuan;padding: 10px 0;text-align: center;height: 30px;font-weight: 900;padding: 21px 0;text-align: center;font-family: youyuan;font-size: 20px;}
+.song_wrapper .title{font-family: youyuan;padding: 10px 0;text-align: center;height: 30px;font-weight: 900;padding: 21px 0;text-align: center;font-family: youyuan;font-size: 20px;text-shadow: 1px 1px 1px #fdfcfc;}
 .song_wrapper .title{padding-bottom: 10px;}
 .wrap .center_con .player_con .play_bar {position: absolute;right: 30px;z-index: 1;}
 .wrap .center_con .player_con .autoRotate {position: relative;left: 10px;top: 40px;width: 280px;}
@@ -73,16 +75,16 @@ body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100
 .comment_list::-webkit-scrollbar {width: 12px;background-color: #F5F5F5;border-radius: 10px;}
 .comment_list::-webkit-scrollbar-thumb {border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);background-color: #555;}
 /* 音乐 */
-.wrap .audio_con {padding: 10px 0;width: 96%;margin: 0 auto;clear: left;}
-.wrap .audio_con audio {height: 40px;background: #fff;width: 100%;outline: none;border: none;box-shadow: 4px 5px 12px 0px black;border-radius: 20px;}
+.wrap .audio_con {padding: 10px 0;width: 100%;margin: 0 auto;clear: left;}
+.wrap .audio_con audio {background: #f1f3f4;width: 100%;outline: none;border: none;box-shadow: 4px 5px 12px 0px black;}
 /* 热门留言 */
 .wrap .comment_wrapper {width: 254px;height: 478px;float: left;padding: 6px;border-radius: 20px;background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);background-blend-mode: screen;}
-.wrap .comment_wrapper .comment_list {overflow-y: scroll;height: 412px;width: 240px;margin: 0 auto;}
+.wrap .comment_wrapper .comment_list {overflow-y: scroll;height: 412px;width: 240px;margin: 0 auto;overflow-x: hidden;}
 .wrap .comment_wrapper .title {padding: 14px 0;text-align: center;font-family: youyuan;font-size: 20px;font-weight: 900;}
-.wrap .comment_wrapper dl {width: 100%;padding: 10px 0;}
+.wrap .comment_wrapper dl {width: 100%;padding: 10px 0 10px 4px;}
 .wrap .comment_wrapper dl dt {width: 45px;float: left;}
-.wrap .comment_wrapper dl dt img {width: 40px;border-radius: 50%;}
-.wrap .comment_wrapper dl dd.name {width: 170px;float: left;padding: 8px 0;overflow: hidden;}
+.wrap .comment_wrapper dl dt img {width: 40px;border-radius: 50%;box-shadow: 0 0 0px 3px black;}
+.wrap .comment_wrapper dl dd.name {float: left;overflow: hidden;font-weight: 900;height: 40px;line-height: 40px;width: 140px;margin-left: 10px;}
 .wrap .comment_wrapper dl dd.detail {clear: left;font-size: 12px;text-indent: 22px;padding-left: 40px;padding-right: 10px;}
 /*视频*/
 .video_con {width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
@@ -96,6 +98,7 @@ body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100
                   <h1>音乐播放器</h1>
                   <!-- 搜索歌曲 -->
                   <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic" placeholder="请输入歌曲名或者歌手名">
+		  <a href="javascript:;" v-on:click="searchMusic" class="search_btn fa fa-x fa-search"></a>
             </div>
             <div class="center_con">
                   <!-- 搜索歌曲列表 -->
@@ -103,9 +106,7 @@ body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100
 			<h5 class="title">歌曲列表</h5>
                         <ul class="song_list">
                         <li v-for="(item,index) in musicList">
-                              <a href="javascript:;" @click="playMusic(item.id)" v-on:click="addClass(index,$event)" v-bind:class="{ playbtn:index==current}">
-					<i  v-on:click="addClass(index,$event)" v-bind:class="{'fa-pause':index==current}"  class="fa fa-x fa-play-circle-o"></i>
-			      </a>
+                              <a href="javascript:;" @click="playMusic(item.id)" class="iconfont icon-bofang" v-on:click="addClassFun(index)" v-bind:class='{"icon-zanting":index==qwerqwre}'></a>
                               <b v-on:click="addClass(index,$event)" v-bind:class="{active:index==current}">{{ item.name }}</b>
                               <span v-if="item.mvid!=0" @click="playMV(item.mvid)">
 					<i  class="fa fa-youtube-play fa-x"></i>
@@ -134,7 +135,7 @@ body{background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100
                   </div>
             </div>
             <div class="audio_con">
-                  <audio ref="audio" @play="play" @pause="pause" :src="mucisUrl" controls autoplay loop class="myaudio"></audio>
+                  <audio ref="audio" @play="play"  @pause="pause" :src="mucisUrl" controls autoplay loop class="myaudio"></audio>
             </div>
             <div class="video_con" v-if="isShow">
                   <video :src="mvUrl" controls="controls" autoplay ></video>
@@ -215,12 +216,14 @@ var app = new Vue({
             // 遮罩层的显示状态
             isShow: false,
             // MV地址
-            mvUrl: ""
+            mvUrl: "",
+		qwerqwre: "0"
       },
-	mounted:function(){
-	      this.searchMusic();
-      },
+
       methods: {
+	      addClassFun: function(index) {
+			this.qwerqwre = index;
+		},
             // 歌曲搜索
             searchMusic: function () {
                   var that = this;
@@ -292,7 +295,20 @@ var app = new Vue({
             hide:function(){
                   this.isShow = false;
             }
+
       },
+	mounted:function(){
+	      this.searchMusic();
+	      this.playMusic(481859794);
+      },
+	created:function() {
+		document.onkeydown = function(e) {
+		let key = window.event.keyCode;
+			if (key == 81) {
+
+			}
+		}
+	}
 })
 </script>
 <pre style="font-size: 20px;font-weight: 900;padding-top: 20px;width: 800px;margin: 0 auto;padding-bottom: 100px;">
