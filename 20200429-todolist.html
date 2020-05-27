@@ -106,73 +106,60 @@ body{background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f
 </pre>
 </section>
 <script>
-// 渐变库color.oulu.me（页面渐变）	
 swal(`页面功能如下
-① 判断输入为空则提示未填写任务
-② 填写任务 回车添加任务
-③ 已完成任务点击复选框，任务添加至已完成
-④ 已完成任务点击返回至任务列表
-⑤ font-awesome 网页字体图标库（列表删除按钮）
-⑥ LocalStroage，数据存储，刷新页面数据依然存在
+	① 判断输入为空则提示未填写任务
+	② 填写任务 回车添加任务
+	③ 已完成任务点击复选框，任务添加至已完成
+	④ 已完成任务点击返回至任务列表
+	⑤ font-awesome 网页字体图标库（列表删除按钮）
+	⑥ LocalStroage，数据存储，刷新页面数据依然存在
 `);
 var app = new Vue({
-      el: "#todoapp",
-      data: {
-            result1: null,
-            // 定义一个数组
-            list: [],
-            msg: ""
-      },
-      methods: {
-            // 新增
-            add: function () {
-                  this.result1 = this.$refs.input.value
-                  if (this.result1 == null || this.result1 == undefined || this.result1 == "") {
-                        alert('亲,您没有填写任务哦！');
-                  } else {
-                        //alert('不为空');
-                        this.list.push({
-                              title: this.msg
-                        });
-                  }
-                  this.msg = "";
-                  //存储数据
-                  localStorage.setItem('list', JSON.stringify(this.list))
-            },
-            // 删除
-            remove: function (index) {
-                  //alert('删除');
-                  //alert(index);
-                  this.list.splice(index, 1);
-                  localStorage.setItem('list', JSON.stringify(this.list))
-            },
-            // 清空
-            clear: function () {
-		if( confirm("确认删除全部") == true ){
-			this.list = [];
-		}else{
-			return;
+	el: "#todoapp",
+	data: {
+		result1: null,
+		list: [],
+		msg: ""
+	},
+	methods: {
+		add: function() {
+			this.result1 = this.$refs.input.value
+			if (this.result1 == null || this.result1 == undefined || this.result1 == "") {
+				alert('亲,您没有填写任务哦！')
+			} else {
+				this.list.push({
+					title: this.msg
+				})
+			}
+			this.msg = "";
+			localStorage.setItem('list', JSON.stringify(this.list))
+		},
+		remove: function(index) {
+			this.list.splice(index, 1);
+			localStorage.setItem('list', JSON.stringify(this.list))
+		},
+		clear: function() {
+			if (confirm("确认删除全部") == true) {
+				this.list = []
+			} else {
+				return
+			}
+		},
+		enter: function($event) {
+			$event.currentTarget.className = "fa fa-check-circle fa-3x"
+		},
+		leave: function($event) {
+			$event.currentTarget.className = "fa fa-check-circle-o fa-3x"
+		},
+		saveList() {
+			localStorage.setItem('list', JSON.stringify(this.list))
 		}
-            },
-            enter: function ($event) {
-                  $event.currentTarget.className = "fa fa-check-circle fa-3x"
-            },
-            leave: function ($event) {
-                  $event.currentTarget.className = "fa fa-check-circle-o fa-3x"
-            },
-            saveList() {
-                  localStorage.setItem('list', JSON.stringify(this.list))
-            }
-      },
-      mounted() {
-            //json字符串转成json对象
-            var list = JSON.parse(localStorage.getItem('list'))
-            //判断list是否存在
-            if (list) {
-                  //存在则将获取到的list保存刷新后的list中
-                  this.list = list;
-            }
-      }
+	},
+	mounted() {
+		var list = JSON.parse(localStorage.getItem('list')) if (list) {
+			this.list = list
+		}
+	}
 })
 </script>
 </body>
