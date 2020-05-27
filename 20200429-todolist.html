@@ -106,6 +106,7 @@ body{background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f
 </pre>
 </section>
 <script>
+// 渐变库color.oulu.me（页面渐变）
 swal(`页面功能如下
 	① 判断输入为空则提示未填写任务
 	② 填写任务 回车添加任务
@@ -118,31 +119,39 @@ var app = new Vue({
 	el: "#todoapp",
 	data: {
 		result1: null,
+		// 定义一个数组
 		list: [],
 		msg: ""
 	},
 	methods: {
+		// 新增
 		add: function() {
 			this.result1 = this.$refs.input.value
 			if (this.result1 == null || this.result1 == undefined || this.result1 == "") {
-				alert('亲,您没有填写任务哦！')
+				alert('亲,您没有填写任务哦！');
 			} else {
+				//alert('不为空');
 				this.list.push({
 					title: this.msg
-				})
+				});
 			}
 			this.msg = "";
+			//存储数据
 			localStorage.setItem('list', JSON.stringify(this.list))
 		},
+		// 删除
 		remove: function(index) {
+			//alert('删除');
+			//alert(index);
 			this.list.splice(index, 1);
 			localStorage.setItem('list', JSON.stringify(this.list))
 		},
+		// 清空
 		clear: function() {
 			if (confirm("确认删除全部") == true) {
-				this.list = []
+				this.list = [];
 			} else {
-				return
+				return;
 			}
 		},
 		enter: function($event) {
@@ -156,8 +165,12 @@ var app = new Vue({
 		}
 	},
 	mounted() {
-		var list = JSON.parse(localStorage.getItem('list')) if (list) {
-			this.list = list
+		//json字符串转成json对象
+		var list = JSON.parse(localStorage.getItem('list'))
+		//判断list是否存在
+		if (list) {
+			//存在则将获取到的list保存刷新后的list中
+			this.list = list;
 		}
 	}
 })
