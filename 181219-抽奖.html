@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>190121-抽奖</title>
+  <link rel="stylesheet" type="text/css" href="http://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+<script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+<style type="text/css">
+.lottery_box{position:relative; margin:40px auto 0; width:785px; height:586px;}
+.lottery_box .lottery{ width:882px; height:592px; position:relative;}
+.lottery_box .lottery img{position:relative; top:2px; left:1px; z-index:1;}
+.lottery_box .lottery a{display: block; background:url(https://s1.ax1x.com/2020/06/02/tYokIe.png) no-repeat; width:150px; height:174px; position:absolute;}
+.lottery_box .lottery a.lottery-active{background:url(https://s1.ax1x.com/2020/06/02/tYoEPH.png) no-repeat 0 0;}
+.lottery_box .lottery-item-12{top:0; left:160px;}
+.lottery_box .lottery-item-11{left: 318px;}
+.lottery_box .lottery-item-10{left: 477px;}
+.lottery_box .lottery-item-3{top: 139px;left: 239px;}
+.lottery_box .lottery-item-4{top: 139px;left: 398px;}
+.lottery_box .lottery-item-9{top: 139px;left: 556px;}
+.lottery_box .lottery-item-14{top: 276px;left: 1px;}
+.lottery_box .lottery-item-2{top: 276px;left: 159px;}
+.lottery_box .lottery-item-5{top: 276px;left: 478px;}
+.lottery_box .lottery-item-8{top: 276px;left: 636px;}
+.lottery_box .lottery-item-15{top: 412px;left: 81px;}
+.lottery_box .lottery-item-1{top: 412px;left: 239px;}
+.lottery_box .lottery-item-6{top: 412px;left: 398px;}
+.lottery_box .lottery-item-7{top: 412px;left: 556px;}
+.lottery_box .lottery-item-13{top: 139px;left: 80px;}
+.lottery_box .lottery .lottery-item .tab1{background: url(https://s1.ax1x.com/2020/06/02/tYoZRA.png) no-repeat;width: 150px;height: 174px;}
+.lottery_box .lottery-item-12 .tab2{background-position:-160px -10px !important;}
+.lottery_box .lottery-item-11 .tab2{background-position:-320px -10px !important;}
+.lottery_box .lottery-item-10 .tab2{background-position:-480px -10px !important;}
+.lottery_box .lottery-item-3 .tab2{background-position:-240px -147px !important;}
+.lottery_box .lottery-item-4 .tab2{background-position:-400px -147px !important;}
+.lottery_box .lottery-item-9 .tab2{background-position:-560px -147px !important;}
+.lottery_box .lottery-item-14 .tab2{background-position:0px -287px !important;}
+.lottery_box .lottery-item-2 .tab2{background-position:-160px -287px !important;}
+.lottery_box .lottery-item-5 .tab2{background-position:-480px -287px !important;}
+.lottery_box .lottery-item-8 .tab2{background-position:-640px -287px !important;}
+.lottery_box .lottery-item-15 .tab2{background-position:-80px -418px !important;}
+.lottery_box .lottery-item-1 .tab2{background-position:-240px -418px !important;}
+.lottery_box .lottery-item-6 .tab2{background-position:-397px -418px !important;}
+.lottery_box .lottery-item-7 .tab2{background-position:-555px -418px !important;}
+.lottery_box .lottery-item-13 .tab2{background-position:-80px -147px !important;}
+.lottery_box a.lottery-btn{width:152px; height:174px; background:url(https://s1.ax1x.com/2020/06/02/tYoFaD.png) no-repeat; top:370px; left:460px; position:absolute; display:block; margin:-94px 0 0 -141px;}
+.lottery_box a.lottery-btn:hover{background:url(https://s1.ax1x.com/2020/06/02/tYoiVO.png) no-repeat;}
+.lottery_box a.lottery-btn span{position:absolute; top:120px; left:0px; font-weight:bold; font-size:16px; color:#fff7e6; width: 100%; text-align:center; z-index:10}
+.layer {position: relative;display: none1;background: #2a3145;padding: 20px;color: #fff;}
+.layer .box {width: 100%;height: 100%;overflow: hidden;}
+.layer .close {position: absolute;top: 0px;right: -30px;display: block;width: 23px;height: 23px;background: url(https://s1.ax1x.com/2020/06/02/tYoVGd.png) no-repeat;font-size: 0;}
+.layer .submit-close{display: block; width:100px; height:42px;    bottom:40px;  background: #BE9F72;color: #000;font-size: 18px;text-align: center;line-height: 42px;margin: 20px auto;}
+.layer{-webkit-animation:moves .5s linear;animation:moves .5s linear}
+@keyframes moves{0%{transform:scale(0.2);opacity:0}100%,50%{transform:scale(1)}}@-webkit-keyframes moves{0%{-webkit-transform:scale(0.2);opacity:0}100%,50%{-webkit-transform:scale(1)}}@-moz-keyframes moves{0%{-moz-transform:scale(0.2);opacity:0}100%,50%{-moz-transform:scale(1)}}@-ms-keyframes moves{0%{-ms-transform:scale(0.2);opacity:0}100%,50%{-ms-transform:scale(1)}}@-o-keyframes moves{0%{-o-transform:scale(0.2);opacity:0}100%,50%{-o-transform:scale(1)}}
+.layer2{width:430px; height:270px;}
+.layer2 h1{font-size:40px;  text-align:center; font-weight: 100;padding: 10px 0px;}
+.layer2 h3{font-size:15px;  text-align:left; margin-bottom:10px;float: left;}
+.layer2 .cop{text-align: center;}
+.layer2 .dh a{color:#BE9F72;text-decoration:underline}
+.layer2 .box{position: relative; overflow:inherit; width:388px; height:168px; padding:0px 20px 30px 20px;margin: 0 auto;}
+.layer2 .box p{font-size:18px;  text-align:center; font-size: 15px;line-height: 25px;text-align: center;margin: 0 auto;}
+.layer2 .box p label{color: #BE9F72;padding: 0 10px;}
+</style>
+ </head>
+ <body>
+<!-- 九宫格抽奖 start -->
+<div class="lottery_box">
+	<div class="lottery lottery1" id="lottery1"></div>
+	<a href="javascript:;" class="lottery-btn"></a>
+</div>
+<!-- 恭喜您获得奖励 -->
+<div class="layer layer2" id="layer2">
+	<div class="box">
+	<h1>抽取成功！</h1>
+        <p class="name">恭喜获得<label>XXXXXXXXXXX</label>礼包</p>
+	<p class="cop">Coupon：<label>XXXXXXXXXXX</label></p>
+	<p class="dh">请于游戏内进行兑换<br>你可以通过 <a href="javascript:showDialog.show(layer2);">【我的礼物盒】</a> 查看所有获得奖励<br>{礼包码仅限本账号使用，仅限使用一次}</p>
+	</div>
+    <a class="submit-close" href="javascript:showDialog.hide(layer2);">确定</a>
+     <a class="close" href="javascript:showDialog.hide(layer2);"></a>
+</div>
+<script src="https://img1.tiancitycdn.com/lq/common/js/dialog.min.js"></script> <!-- dialog.js的引入只能放在页面最底部 头部没效果 -->
+<script src="https://img1.tiancitycdn.com/project5/csol2/common/lottery_utf8.min.js"></script>
+<!-- 抽奖生成 -->
+<script type="text/javascript">
+var lottery = new lottery();
+$(function(){
+	var _str ='',
+		l_name = ['T50蓝钻芯片(3个)','CSOL大鼠标垫','2000欢乐积分兑换券','白银破译芯片(20个)','雷蛇狂蛇鼠标','CSOL双肩包','500欢乐积分兑换券','白银破译芯片(5个)','粉碎者X-12(永久)','【天龙】M3(永久)','50欢乐积分兑换券','道具期限延长券(100个)','追踪者X-90(永久)','猎杀者X-15(永久)','道具期限延长券(50个)']
+	// 九宫格
+	$.each(l_name,function(i,obj){
+//		_str += '<a class="lottery-item lottery-item-'+(i+1)+'" href="javascript:;"><img alt="'+obj+'" src="https://img1.tiancitycdn.com/lq/event/2018/1217cTree/images/gift'+(i+1)+'.png" /></a>';
+		_str += '<a class="lottery-item lottery-item-'+(i+1)+'" href="javascript:;"><div class="tab1 tab2"></div></a>';
+	});
+	$('.lottery1').append(_str);
+	// 抽奖
+	lottery.init({
+	  container:'#lottery1',
+	  items:'.lottery-item',
+	  focusClass:'lottery-active',
+	  loop:3
+	});
+});
+function showPop_l(n,con,name){
+	$('#layer2 .box .name').html('');
+	$('#layer2 .box .cop').html('');
+	$('#layer2 .box .name').append('恭喜获得<label>'+name+'</label>');
+	$('#layer2 .box .cop').append('Coupon：<label>'+con+'</label>');
+	showDialog.show(layer2);
+}
+</script>
+<!-- 抽奖调用  -->
+<script>
+	$(function(){
+		// 抽奖
+	    $(".lottery_box .lottery-btn").click(function(){
+	        var index = 5,con='tertertertert',name='XXXXXXXXqweqeXXXXX';
+	        if(lottery.isStart==false){
+	            // 当抽奖未执行时才进来,防止连点
+	            // 启动抽奖
+	            lottery.start();
+	            // 设置中奖元素序号(从0开始)、回调函数
+	            lottery.stop(index,function(i){
+	                showPop_l(i,con,name);
+	            });
+	        }
+	    });
+	});
+</script>
+ </body>
+</html>
