@@ -128,7 +128,7 @@ var app = new Vue({
 		add: function() {
 			this.result1 = this.$refs.input.value
 			if (this.result1 == null || this.result1 == undefined || this.result1 == "") {
-				alert('亲,您没有填写任务哦！');
+				swal('亲,您没有填写任务哦！');
 			} else {
 				//alert('不为空');
 				this.list.push({
