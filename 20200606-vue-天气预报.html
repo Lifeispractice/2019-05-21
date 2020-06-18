@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,8 @@
       <link rel="stylesheet" type="text/css"
             href="https://img1.tiancitycdn.com/project1/csol/event/2017/10/cs171018event/css/animate.css">
       <link rel="stylesheet" href="http://at.alicdn.com/t/font_1739942_fsu1pxac3hv.css">
+      <link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+      <script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
       <style type="text/css">
       body{min-width:1200px;font-size:14px;background-image:linear-gradient(160deg,#a200ff 20%,#cf3700 80%);width:100%;height:1000px;overflow:hidden}
       .container{width:600px;color:#fff;background:#222431;overflow:hidden;border-radius:20px;position:absolute;top:50%;left:50%;margin:-200px 0 0 -300px;height:400px}
@@ -42,6 +45,7 @@
       .location-container .location-button{text-align:center;height:30px;line-height:30px;width:100%;border-radius:16px;border:none;font-weight:900;font-size:15px;outline:0;background-image:linear-gradient(to right,#5151e6,#72def1);cursor:pointer}
       .location-container .location-button span.iconfont{letter-spacing:12px}
       .weather-conteiner span#weather-11{width:100px;height:100px;display:block}
+      .sweet-alert h2{text-align: left;font-size: 20px;margin: 25px 0 0;}
       </style>
 </head>
 
@@ -107,6 +111,10 @@
       <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script type="text/javascript">
+      swal(`页面功能如下
+            ① 输入城市 点击查询按钮或者回车查询当天天气
+            ② 技术栈：axios、vue、iconfont、sweetalert.justify
+      `);
             /*
       接口文档如下：天气接口
       请求地址：http://wthrcdn.etouch.cn/weather_mini
@@ -130,10 +138,7 @@
                         itemHigh: "itemHigh",
                         itemType: "itemType",
                         itemFx: "itemFx",
-                        // isIco1: false,
-                        // isIco2: false,
-                        // isIco3: false,
-                        // isIco4: false,
+
                         itemTypeText: "itemTypeText",
                         classObject:{ 'icon-tianqizitiku26': false, 'icon-iconset0465':false, 'icon-duoyun':false, 'icon-qing':false },
                         weatherList: []
@@ -167,7 +172,7 @@
                                           that.itemFx = response.data.data.forecast[0].fengxiang;
                                           that.itemGanmao = response.data.data.ganmao;
                                     }).catch(function (err) {
-                                          alert("抱歉，当前城市暂无数据")
+                                          swal("抱歉，当前城市暂无数据")
                                     })
                         },
                         setPageMenu() {
