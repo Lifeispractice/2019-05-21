@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>20200422-vue-天气预报</title>
+      <script src="https://image.tiancity.com/others/Scripts/jquery-1.7.2.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+      <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/2017/10/cs171018event/css/animate.css">
+      <link rel="stylesheet" href="http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.css" />
+      <link rel="stylesheet" href="http://at.alicdn.com/t/font_1739942_307s6m42nt2.js" />
+<style type="text/css">
+@font-face {
+  font-family: 'iconfont';  /* project id 1739942 */
+  src: url('http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.eot');
+  src: url('http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.woff2') format('woff2'),
+  url('http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_1739942_qkp7gj8ilr.svg#iconfont') format('svg');
+}
+
+body {min-width: 1200px;font-size: 14px;background-image: linear-gradient(160deg, #a200ff 20%,#cf3700 80%);width: 100%;height: 1000px;overflow: hidden;}
+.container {width:600px;color:#fff;background:#222431;overflow:hidden;border-radius:20px;position:absolute;top:50%;left:50%;margin: -200px 0 0 -300px;height:400px;}
+.container {background: url(https://img1.tiancitycdn.com/cls/homepage/v1/images/pic/wp/wp125_1440x900.jpg) no-repeat;background-size: cover;}
+.container .weather-side {width: 200px;float: left;background: #588fc7;padding: 8px 0 20px 30px;height: 100%;background-image: linear-gradient(#5151e6 0%,#72def1 45%, #5151E6 100%);}
+.container .weather-side .gradient {background:#999;position:absolute;top:0;left:0;}
+.date-container {width:100%;}
+.date-container h2 {font-size:20px;}
+.date-container span {display:block;font-size: 20px;height: 40px;line-height: 40px;width: 113px;}
+.date-container span.date-day{height: 80px;}
+.weather-conteiner {margin: 60px 0 30px 2px;position: relative;padding-top: 92px;}
+.weather-conteiner .weathewr-temp { font-size: 20px; font-weight: 900; font-family: cursive; padding: 10px 0; }
+.weather-conteiner .weather-desc {font-size: 30px;font-family: cursive;font-weight: 900;}
+.weather-conteiner span.iconfont {font-size: 70px;position: absolute;top: 0;left: 0;}
+.info-side {width:370px;float:right;background:#222431;overflow:hidden;height:100%;}
+.today-info-container {width:80%;margin: 20px auto;border-radius: 20px;height: 83px;background: #333540;padding: 10px 0;}
+.today-info-container .clear {width: 85%;height:20px;padding: 4px 20px;}
+.today-info-container .clear .title {float:left;}
+.today-info-container .clear .value {float:right;}
+.week-container {width: 90%;margin:0 auto;padding:20px 0;}
+.week-list {width:102%;overflow: hidden;height: 128px;}
+.week-list li {width: 23%;height: 128px;float:left;margin-right: 6px;color: #000;border-radius: 4px;background-image: linear-gradient(#72def1, #adb);}
+.week-list li:hover {background-image: linear-gradient(#ad6, #adb);}
+.week-list li.active {background:#fff;}
+.week-list li span {display:block;text-align:center;font-weight:900;padding:5px 0;}
+.week-list li span.iconfont {font-size: 30px;}
+.location-container input{display: block;margin: 20px auto;width: 80%;height: 25px;line-height: 25px;border-radius: 4px;border: none;text-indent: 12px;outline: none;font-weight: 900;}
+.location-container .location-button{text-align:center;height:30px;line-height:30px;width: 100%;border-radius: 16px;border: none;font-weight: 900;font-size: 15px;outline: none;background-image: linear-gradient(to right, #5151e6, #72def1);cursor: pointer;}
+.location-container .location-button span.iconfont { letter-spacing: 12px; }
+</style>
+</head>
+<body>
+<div class="container" id="app">
+      <!-- 左边部分 -->
+      <div class="weather-side animated bounceInLeft">
+            <!-- 渐变 -->
+            <div class="gradient"></div>
+            <div class="date-container" >
+                  <h2 class="date-dayname" id="date-dayname"></h2>
+                  <span class="date-day" id="date-day">2020-3-{{  itemDate }}</span>
+		<!--	location图标 -->
+                  <span class="iconfont" id="locationa">{{ city }}</span>
+            </div>
+            <div class="weather-conteiner">
+                  <!-- 天气图标 -->
+                  <span class="iconfont" id="weather-1">&#xe61f;</span>
+                  <div class="weather-desc" id="weather-desc">{{ itemType }}</div>
+                  <div class="weathewr-temp" id="weathewr-temp"><b>{{ itemHigh }}</b><br /><b>{{ itemIow }}</b></div>
+            </div>
+      </div>
+      <!-- 右边部分 -->
+      <div class="info-side animated bounceInRight">
+            <div class="today-info-container">
+                  <div class="today-info"></div>
+		<!--出门注意事项：-->
+		<div class="pm clear">
+			<span class="title">注意事项：</span>
+			<span class="value">{{ itemGanmao }}</span>
+		</div>
+
+            </div>
+	    <div class="week-container">
+			<ul class="week-list">
+				<li class="day1" id="day1" v-for="item in weatherList">
+					<!-- <span class="iconfont">&#xe61f;</span> -->
+					<span class="iconfont">{{  item.type }}</span>
+					<span class="day-name">{{  item.date }}</span>
+					<span class="day-temp">
+						<b>{{ item.low }}</b>
+						<b>{{ item.high }}</b>
+					</span>
+				</li>
+			</ul>
+			<div class="location-container">
+				<input type="text" v-model="city" @keyup.enter="searchWeather" value="上海" placeholder="请输入要查询的城市" id="city" />
+				<button class="location-button" id="location-button" @click="searchWeather()">
+					<!--location图标 -->
+					<span class="iconfont">&#xe654;查询</span>
+				</button>
+			</div>
+		</div>
+      </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+/*
+      接口文档如下：天气接口
+      请求地址：http://wthrcdn.etouch.cn/weather_mini
+      请求地址：http://wthrcdn.etouch.cn/weather_mini?city=北京
+      请求方法：get
+      请求参数：city（查询的城市）
+      响应内容：天气信息
+
+      实现思路：
+      1、按下回车（v-on .enter）
+      2、查询数据（axios 接口 v-model）
+      3、渲染数据（v-for 数组 that）
+*/
+
+var app = new Vue({
+      el:"#app",
+      data:{
+		city:"武汉",
+		itemDate:"itemDate",
+		itemlow:"itemlow",
+		itemHigh:"itemHigh",
+		itemType:"itemType",
+		itemFx:"itemFx",
+		weatherList:[]
+      },
+      methods : {
+            searchWeather:function() {
+                  // console.log(this.city);
+                  // 调用接口
+                  //保存this
+                  var that = this;
+                  axios.get('http://wthrcdn.etouch.cn/weather_mini?city='+this.city).then(function(response){
+                        // console.log(response);
+                        console.log(response.data.data);
+                        that.weatherList = response.data.data.forecast
+			that.itemDate = response.data.data.forecast[0].date;
+			that.itemHigh = response.data.data.forecast[0].high;
+			that.itemIow = response.data.data.forecast[0].low;
+			that.itemType = response.data.data.forecast[0].type;
+			that.itemFx = response.data.data.forecast[0].fengxiang;
+			that.itemGanmao = response.data.data.ganmao;
+                  }).catch(function (err) { })
+            },
+      },
+      mounted: function() {
+		this.searchWeather();
+      },
+})
+</script>
+</body>
+</html>
+
