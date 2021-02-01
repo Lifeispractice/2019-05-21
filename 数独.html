@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="https://img1.tiancitycdn.com/project1/csol/event/cs160203act/css/basic.css">
+  <script src="https://img1.tiancitycdn.com/project1/csol/event/2021/01/cs210127mobile/js/jquery-1.7.2.min.js"></script>
+  <script>window.use_screen_base = '1080';</script>
+ </head>
+<style type="text/css">
+body{background:#BCF5A8;}
+.flx{display: flex;justify-content: space-between;align-items: center;flex-wrap: wrap;}
+.box{width: 8.7rem;height: 8.7rem;margin:2rem auto;background:#50CD8B;}
+.box ul li {width: 1.4rem;height: 1.4rem;background:#fff;border: 0.02rem solid #000;}
+.box ul li.mrOn{background:#000;}
+.box ul li.on{background:#f00;}
+.box ul li.mrOnS{background:#00f;}
+.box ul li p {font-size: 1rem;text-align: center;width: 1.4rem;height: 1.4rem;line-height: 1.4rem;font-family: fantasy;color:#fff;font-weight:bold;}
+.btns{padding-top:1rem;}
+.btns .left{width: 64%;}
+.btns .left a{display:block;width: 1.6rem;height: 1.6rem;margin: 0.3rem auto;}
+.btns .left a p {font-size: 1rem;text-align: center;width: 1.6rem;height: 1.6rem;line-height: 1.6rem;font-family: fantasy;background: #50CB8B;font-weight: 900;color: #fff;border-radius: 0.2rem;}
+.btns .left a p:hover{background:#f00;}
+.btns .right {width: 36%;}
+.btns .right a { display: block; width: 3rem; height: 1.4rem; background: #50CD8B; border-radius: 0.2rem; margin: 0.2rem auto; }
+.btns .right a p {font-size: 0.6rem;color: #fff;text-align: center;line-height: 1.4rem;font-weight:bold;}
+.btns .right a:hover{background:#f00;}
+</style>
+<body>
+<div class="box">
+	<ul class="flx"></ul>
+	<div class="btns flx">
+		<div class="left flx"></div>
+		<div class="right">
+			<a href="javascript:;"><p>默认数</p></a>
+			<a href="javascript:;"><p>删除</p></a>
+			<a href="javascript:;"><p>重来</p></a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	for(var i = 1; i < 37 ; i ++ ){
+		$("ul").append('<li class="'+i+'"><p></p></li>')
+	}
+	for(var i = 1; i < 7 ; i ++ ){
+		$(".btns .left").append('<a class="'+i+'"><p>'+i+'</p></a>')
+	}
+	$('.box ul li').each(function(i){
+	    $(this).click(function(){
+		$(this).addClass("on mrOn").siblings().removeClass("on")
+	    });
+	});
+	$('.btns .left a').each(function(i){
+	    $(this).click(function(){
+		var text = $(this).find("p").text();
+		$(".box ul li.on p").text(text)
+	    });
+	});
+
+	$('.btns .right a').each(function(i){
+	    $(this).click(function(){
+			switch(i){
+				case 0:
+					$(".box ul li.mrOn").addClass("mrOnS")
+					$(this).hide();
+					break;
+				case 1:
+					$(".box ul li.on p").text("")
+					$(".box ul li.on").removeClass("on mrOn mrOnS")
+					break;
+				case 2:
+					$(".btns .right a").eq(0).show();
+					$(".box ul li").removeClass("on mrOn mrOnS")
+					$(".box ul li p").text("")
+					break;
+			}
+	    });
+	});
+})
+</script>
+</body>
+<script src="https://img1.tiancitycdn.com/project1/csol/event/2021/01/cs210127mobile/js/rem_screen.js"></script>
+</html>
